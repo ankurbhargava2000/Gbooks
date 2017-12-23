@@ -1,0 +1,105 @@
+﻿@model GarmentSoft.Models.PrinterModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Print</title>
+    <link href="~/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+    <style>
+        table thead tr th {
+            background: #aaa;
+        }
+
+        #total_row td {
+            border-top: 2px solid #bbb !important;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container-fluid">
+        <div style="margin-bottom: 10px;">
+            @Html.Partial("_ChalanTop", Model.Company)
+        </div>
+        <div class="row" style="margin: 15px 0; font-size: 1.3em">
+            <div class="pull-left">
+                No: <strong>@Model.No</strong>
+            </div>
+            <div class="pull-right">
+                Date: <strong>@(Model.CreatedOn.ToString("dd MMMM, yyyy"))</strong>
+            </div>
+        </div>
+        <div class="row" style="margin: 15px 0; font-size: 1.3em">
+            <div>
+                M/s <strong>@Model.Customer</strong>
+            </div>
+        </div>
+        <div class="row" style="margin: 15px 0;">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th style="width: 5%">S.No.</th>
+                        <th>Particulars</th>
+                        <th>Pcs</th>
+                        <th>Rate</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        if (Model.Items.Count > 0)
+                        {
+                            var i = 1;
+                            foreach (var item in Model.Items)
+                            {
+                                <tr>
+                                    <td>
+                                        @i
+                                    </td>
+                                    <td>
+                                        @item.Particular
+                                    </td>
+                                    <td style='width: 15%' class='sale'>
+                                        @item.Pcs
+                                    </td>
+                                    <td style='width: 15%' class='qty'>
+                                        Rs @item.Rate
+                                    </td>
+                                </tr>
+                                i++;
+                            }
+                        }
+                    }
+
+                    @if (Model.ShowTotal)
+                    {
+                        <tr id="total_row">
+                            <td></td>
+                            <td style="text-align: right;">Gross</td>
+                            <td style="text-align: right;">Rs</td>
+                            <td>@Model.Gross</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td style="text-align: right;">Discount</td>
+                            <td style="text-align: right;">Rs</td>
+                            <td>@Model.Discount</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td style="text-align: right;">Net Total</td>
+                            <td style="text-align: right;">Rs</td>
+                            <td>@Model.NetTotal</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

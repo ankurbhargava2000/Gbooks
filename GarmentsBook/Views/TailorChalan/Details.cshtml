@@ -1,0 +1,116 @@
+﻿@model GarmentSoft.Models.TailorChalan
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="portlet light">
+    <div class="portlet-title">
+        <div class="caption font-red-sunglo">
+            <i class="icon-speech font-red-sunglo"></i>
+            <span class="caption-subject bold uppercase">Chalan Details</span>
+        </div>
+        <div class="actions">
+            <a href="@Url.Action("Index")" class="btn btn-circle btn-default">
+                <i class="fa fa-arrow-left"></i> Back
+            </a>
+            <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:;" data-original-title="" title="">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <h4>Tailor Chalan# @Model.Id</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                Vendor Name
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Vendor.VendorName)
+            </dd>
+            <dt>
+                Chalan Number
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ChalanNo)
+            </dd>
+            <dt>
+                Chalan Date
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ChalanDate)
+            </dd>
+        </dl>
+    </div>
+    <p>
+        Printer Chalan Details
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                Product Name
+            </th>
+            <th>
+                Quantity
+            </th>
+            <th>
+                Labor Cost
+            </th>
+        </tr>
+        @{
+            if (Model != null && Model.TailorChalanDetails != null)
+            {
+                foreach (var item in Model.TailorChalanDetails)
+                {
+
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Product.ProductName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Quantity)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LaborCost)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            @if (item.TailorMaterialDetails != null && item.TailorMaterialDetails.Count>0)
+                            {
+                                <table class="table">
+                                    <tr>
+                                        <th colspan="2"> Material Details</th>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            Product
+                                        </th>
+                                        <th>
+                                            Quantity
+                                        </th>
+                                    </tr>
+                                    @foreach (var material in item.TailorMaterialDetails)
+                                    {
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayFor(p => material.Product.ProductName)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayFor(p => material.Quantity)
+                                        </th>
+                                    </tr>
+                                    }
+                                </table>
+                            }
+                                    
+                        </td>
+                    </tr>
+                }
+            }
+        }
+    </table>
+
+</div>

@@ -1,0 +1,126 @@
+﻿@model GarmentSoft.Models.PrintJobWorkReceived
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="portlet light">
+    <div class="portlet-title">
+        <div class="caption font-red-sunglo">
+            <i class="icon-speech font-red-sunglo"></i>
+            <span class="caption-subject bold uppercase">Challan Detail</span>
+        </div>
+        <div class="actions">
+            <a href="@Url.Action("Index")" class="btn btn-circle btn-default">
+                <i class="fa fa-arrow-left"></i> Back
+            </a>
+            <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:;" data-original-title="" title="">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <h4>Challan #</h4>
+                        <div>
+                            @Model.chalan_number
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <h4>Vendor</h4>
+                        <div>
+                            @Model.Vendor.VendorName
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <h4>Date</h4>
+                        <div>
+                            @(Model.ChalanDate.ToString("dd-MMM-yyyy"))
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-md-8">
+                    <h4>Products</h4>
+                    <table id="products_table" class="table">
+                        <tr>
+                            <th>Name</th>
+                            <th>Rate</th>
+                            <th>Qty</th>
+                            <th>Fold</th>
+                            <th>Amount</th>
+                        </tr>
+                        @{
+                            if (Model.PrintJobWorkReceivedDetails.Count() > 0)
+                            {
+                                foreach (var item in Model.PrintJobWorkReceivedDetails)
+                                {
+                                    <tr>
+                                        <td>
+                                            <div style='margin-top: 5px;'>@item.Product.ProductName</div>
+                                        </td>
+                                        <td style='width: 15%' class='sale'>
+                                            Rs @item.Charges
+                                        </td>
+                                        <td style='width: 15%' class='qty'>
+                                            @item.Quantity
+                                        </td>
+
+                                        <td style='width: 15%' class='dscnt'>
+                                            @item.Fold
+                                        </td>
+                                        <td class='ptotal'>
+                                            Rs @((item.Quantity * item.Charges))
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        }
+                    </table>
+                </div>
+                <div class="col-md-4">
+                    <h4>Total</h4>
+                    <table class="table">
+                        <tr>
+                            <td style="width: 70%">
+                                Subtotal
+                            </td>
+                            <td id="sub_total">
+                                Rs @Model.GrossCharges
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Tax
+                            </td>
+                            <td>
+                                Rs @Model.Tax
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Total
+                            </td>
+                            <td id="total_discount">
+                                Rs @Model.NetCharges
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
