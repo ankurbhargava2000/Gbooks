@@ -239,6 +239,7 @@
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\CompanyVM.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\DashboardVM.cs" />
     <Compile Include="Models\FinancialYear.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\InvoiceDetail.cs" />
@@ -634,6 +635,12 @@
     <Content Include="Views\Shared\SinglePrint.cshtml" />
     <Content Include="Views\Shared\_ChalanTop.cshtml" />
     <Content Include="Views\Shared\_LayoutModelPopup.cshtml" />
+    <Content Include="Views\Dashboard\Index.cshtml" />
+    <Content Include="Views\Dashboard\_Header.cshtml" />
+    <Content Include="Views\Dashboard\_Overview.cshtml" />
+    <Content Include="Views\Dashboard\_SalesChart.cshtml" />
+    <Content Include="Views\Dashboard\_CustomerSupport.cshtml" />
+    <Content Include="Views\Dashboard\_Feeds.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
