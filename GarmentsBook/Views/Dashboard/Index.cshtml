@@ -1,37 +1,54 @@
-﻿@model StockManager.Models.DashboardVM
+﻿@model GarmentSoft.Models.DashboardVM
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<link href="~/assets/global/plugins/date_range_picker/daterangepicker.css" rel="stylesheet" />
 
-<h3 class="page-title">
-    Dashboard
-    <small>dashboard &amp; statistics</small>
-</h3>
-
-<div class="row">
-    @Html.Partial("_Header", Model)
-</div>
-
-<div class="row">
-    <div class="col-md-6 col-sm-6">
-        @Html.Partial("_Overview", Model)
+<div class="row margin-bottom-20">
+    <div class="col-md-4">
+        <h3 class="page-title">
+            Dashboard
+            <small>dashboard &amp; statistics</small>
+    
+        </h3>
     </div>
-    <div class="col-md-6 col-sm-6">
-        @Html.Partial("_SalesChart")
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-6 col-sm-6">
-        @Html.Partial("_CustomerSupport")
-    </div>
-    <div class="col-md-6 col-sm-6">
-        @Html.Partial("_Feeds")
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <div id="daterange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%">
+            <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
+            <span></span> <b class="caret"></b>
+        </div>
     </div>
 </div>
+<div id="mainContent">
+    <div class="row">
+        @Html.Partial("_Header", Model)
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 col-sm-6">
+            @Html.Partial("_Overview", Model)
+        </div>
+        <div class="col-md-6 col-sm-6">
+            @Html.Partial("_SalesChart")
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-sm-6">
+            @Html.Partial("_CustomerSupport")
+        </div>
+        <div class="col-md-6 col-sm-6">
+            @Html.Partial("_Feeds")
+        </div>
+    </div>
+</div>
+
 
 @section scripts{
-
+    <script src="~/assets/global/plugins/date_range_picker/moment.min.js"></script>
+<script src="~/assets/global/plugins/date_range_picker/daterangepicker.js"></script>
+<script src="~/assets/global/scripts/dashboard.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js"></script>
 
     <script>

@@ -45,7 +45,7 @@ namespace GarmentSoft.Controllers
         // GET: Vendors/Create
         public ActionResult Create()
         {
-            ViewBag.VendorTypeId = new SelectList(db.VendorTypes, "Id", "VendorType1");
+            ViewBag.VendorTypeId = new SelectList(db.VendorTypes, "Id", "VendorTypeName");
             return View();
         }
 
@@ -56,14 +56,16 @@ namespace GarmentSoft.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,VendorTypeId,VendorName,PhoneNumber,Address,Description,IsActive,mobile,email,pan_number,gst_number,CompanyId")] Vendor vendor)
         {
+            var CompanyId = Convert.ToInt32(Session["CompanyID"]);
             if (ModelState.IsValid)
             {
+                vendor.Company_Id = CompanyId;
                 db.Vendors.Add(vendor);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.VendorTypeId = new SelectList(db.VendorTypes, "Id", "VendorType1", vendor.VendorTypeId);
+            ViewBag.VendorTypeId = new SelectList(db.VendorTypes, "Id", "VendorTypeName", vendor.VendorTypeId);
             return View(vendor);
         }
 
@@ -80,7 +82,7 @@ namespace GarmentSoft.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.VendorTypeId = new SelectList(db.VendorTypes, "Id", "VendorType1", vendor.VendorTypeId);
+            ViewBag.VendorTypeId = new SelectList(db.VendorTypes, "Id", "VendorTypeName", vendor.VendorTypeId);
             return View(vendor);
         }
 
@@ -93,11 +95,13 @@ namespace GarmentSoft.Controllers
         {
             if (ModelState.IsValid)
             {
+                var CompanyId = Convert.ToInt32(Session["CompanyID"]);
+                vendor.Company_Id = CompanyId;
                 db.Entry(vendor).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.VendorTypeId = new SelectList(db.VendorTypes, "Id", "VendorType1", vendor.VendorTypeId);
+            ViewBag.VendorTypeId = new SelectList(db.VendorTypes, "Id", "VendorTypeName", vendor.VendorTypeId);
             return View(vendor);
         }
 

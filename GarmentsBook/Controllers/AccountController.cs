@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Antlr.Runtime.Misc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -15,6 +18,7 @@ namespace GarmentSoft.Controllers
     [Authorize]
     public class AccountController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -79,7 +83,37 @@ namespace GarmentSoft.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                {
+                    ApplicationUser user = await UserManager.FindAsync(model.Email, model.Password);
+                        var associatedCompanyList = db.UserCompanies.Where(x => x.UserId == user.Id).Include(x => x.Company).Select(y => new
+                        {
+                            CompanyId = y.Company.Id,
+                            CompanyName = y.Company.Name,
+                            YearId = y.Company.currentFinYear_id,
+                            y.is_default
+                        }).ToList();
+
+                        List<CompanyVM> companyList = new List<CompanyVM>();
+                        foreach (var associatedCompany in associatedCompanyList)
+                        {
+                            CompanyVM company = new CompanyVM();
+                            company.CompanyId = associatedCompany.CompanyId;
+                            company.CompanyName = associatedCompany.CompanyName;
+                            company.IsDefault = associatedCompany.is_default;
+                            company.YearId = associatedCompany.YearId;
+                            if (associatedCompany.is_default == true)
+                            {
+                                Session["CompanyID"] = associatedCompany.CompanyId;
+                                Session["CompanyName"] = associatedCompany.CompanyName;
+                                Session["FinancialYearID"] = associatedCompany.YearId;
+                            }
+                            
+                            companyList.Add(company);
+                        }
+                        
+                        Session["companyListAssociatedWithUser"] = companyList;
+                        return RedirectToLocal(returnUrl);
+                    }
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -449,7 +483,7 @@ namespace GarmentSoft.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Dashboard");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult

@@ -45,8 +45,8 @@ namespace GarmentSoft.Controllers
         // GET: Products/Create
         public ActionResult Create()
         {
-            ViewBag.ProductTypeId = new SelectList(db.ProductTypes, "Id", "ProductType1");
-            ViewBag.unit_id = new SelectList(db.MeasuringUnits, "Id", "Name");
+            ViewBag.ProductTypeId = new SelectList(db.ProductTypes, "Id", "ProductTypeName");
+            ViewBag.Unit = new SelectList(db.MeasuringUnits, "Id", "Name");
             return View();
         }
 
@@ -64,8 +64,8 @@ namespace GarmentSoft.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ProductTypeId = new SelectList(db.ProductTypes, "Id", "ProductType1", product.ProductTypeId);
-            ViewBag.unit_id = new SelectList(db.MeasuringUnits, "Id", "Name", product.unit_id);
+            ViewBag.ProductTypeId = new SelectList(db.ProductTypes, "Id", "ProductTypeName", product.ProductTypeId);
+            ViewBag.Unit = new SelectList(db.MeasuringUnits, "Id", "Name", product.unit_id);
 
             return View(product);
         }
@@ -83,8 +83,8 @@ namespace GarmentSoft.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ProductTypeId = new SelectList(db.ProductTypes, "Id", "ProductType1", product.ProductTypeId);
-            ViewBag.unit_id = new SelectList(db.MeasuringUnits, "Id", "Name", product.unit_id);
+            ViewBag.ProductTypeId = new SelectList(db.ProductTypes, "Id", "ProductTypeName", product.ProductTypeId);
+            ViewBag.Unit = new SelectList(db.MeasuringUnits, "Id", "Name", product.unit_id);
             return View(product);
         }
 
@@ -101,8 +101,8 @@ namespace GarmentSoft.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ProductTypeId = new SelectList(db.ProductTypes, "Id", "ProductType1", product.ProductTypeId);
-            ViewBag.unit_id = new SelectList(db.MeasuringUnits, "Id", "Name", product.unit_id);
+            ViewBag.ProductTypeId = new SelectList(db.ProductTypes, "Id", "ProductTypeName", product.ProductTypeId);
+            ViewBag.Unit = new SelectList(db.MeasuringUnits, "Id", "Name", product.unit_id);
             return View(product);
         }
 

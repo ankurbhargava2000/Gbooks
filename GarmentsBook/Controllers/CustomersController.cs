@@ -58,6 +58,8 @@ namespace GarmentSoft.Controllers
         {
             if (ModelState.IsValid)
             {
+                int companyId = Convert.ToInt32(Session["CompanyID"]);
+                vendor.Company_Id = companyId;
                 db.Customers.Add(vendor);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -93,6 +95,8 @@ namespace GarmentSoft.Controllers
         {
             if (ModelState.IsValid)
             {
+                int companyId = Convert.ToInt32(Session["CompanyID"]);
+                vendor.Company_Id = companyId;
                 db.Entry(vendor).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

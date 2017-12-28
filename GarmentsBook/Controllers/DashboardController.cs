@@ -14,7 +14,7 @@ namespace GarmentSoft.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         [Authorize]
-        public ActionResult Index()
+        public ActionResult Index(string strtDate ,string edDate)
         {
             try
             {
@@ -23,9 +23,21 @@ namespace GarmentSoft.Controllers
                 var companyID = Convert.ToInt32(Session["CompanyID"]);
                 var yearID = Convert.ToInt32(Session["FinancialYearID"]);
 
+                DateTime startDate = DateTime.Today;
+                DateTime endDate = DateTime.Today;
+                if (!string.IsNullOrEmpty(strtDate))
+                {
+                    startDate = Convert.ToDateTime(startDate);
+                }
+                if (!string.IsNullOrEmpty(edDate))
+                {
+                    endDate = Convert.ToDateTime(edDate);
+                }
+
                 vm.totalPurchases = db.PurchaseOrders
                     .Where(x => x.Company_Id == companyID)
-                    .Where(x => x.FinancialYear_Id == yearID)
+                    //.Where(x => x.FinancialYear_Id == yearID)
+                    .Where(x => x.InvoiceDate >= startDate && x.InvoiceDate <= endDate)
                     .ToList().Sum(x => x.NetAmount);
 
                 vm.totalSales = db.InvoiceMasters
@@ -49,7 +61,6 @@ namespace GarmentSoft.Controllers
                 return HttpNotFound(e.InnerException.Message);
             }
         }
-
         private ChartModel GetSalesCount(int? yearID, int? companyID)
         {
             var FiscalYear = db.FinancialYears.Find(yearID);

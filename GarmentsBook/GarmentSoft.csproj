@@ -222,6 +222,7 @@
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\PurchaseOrdersController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
+    <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="Controllers\TailorChalanController.cs" />
     <Compile Include="Controllers\TailorChalanSendController.cs" />
     <Compile Include="Controllers\VendorsController.cs" />
@@ -270,6 +271,20 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\global\css\login.min.css" />
+    <Content Include="assets\global\plugins\bootstrap-switch\css\bootstrap-switch.min.css" />
+    <Content Include="assets\global\plugins\bootstrap-switch\js\bootstrap-switch.min.js" />
+    <Content Include="assets\global\plugins\date_range_picker\daterangepicker.css" />
+    <Content Include="assets\global\plugins\date_range_picker\daterangepicker.js" />
+    <Content Include="assets\global\plugins\date_range_picker\moment.min.js" />
+    <Content Include="assets\global\plugins\jquery-validation\js\additional-methods.min.js" />
+    <Content Include="assets\global\plugins\jquery-validation\js\jquery.validate.min.js" />
+    <Content Include="assets\global\plugins\select2\css\select2-bootstrap.min.css" />
+    <Content Include="assets\global\plugins\select2\css\select2.min.css" />
+    <Content Include="assets\global\plugins\select2\js\select2.full.min.js" />
+    <Content Include="assets\global\scripts\CompanyChange.js" />
+    <Content Include="assets\global\scripts\dashboard.js" />
+    <Content Include="assets\global\scripts\login.min.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\bootstrap-datetimepicker.css" />
@@ -282,6 +297,8 @@
     <Content Include="Content\css\zabuto_calendar.css" />
     <Content Include="Content\font-awesome\css\font-awesome.css" />
     <Content Include="Content\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\img\login-bg.jpg" />
+    <Content Include="Content\img\logo-big.png" />
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -298,6 +315,7 @@
     <Content Include="Content\font-awesome\fonts\fontawesome-webfont.ttf" />
     <Content Include="Content\font-awesome\fonts\fontawesome-webfont.woff" />
     <Content Include="Content\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="assets\global\plugins\date_range_picker\daterangepicker.scss" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -636,16 +654,20 @@
     <Content Include="Views\Shared\_ChalanTop.cshtml" />
     <Content Include="Views\Shared\_LayoutModelPopup.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
+    <Content Include="Views\Dashboard\_CustomerSupport.cshtml" />
+    <Content Include="Views\Dashboard\_Feeds.cshtml" />
     <Content Include="Views\Dashboard\_Header.cshtml" />
     <Content Include="Views\Dashboard\_Overview.cshtml" />
     <Content Include="Views\Dashboard\_SalesChart.cshtml" />
-    <Content Include="Views\Dashboard\_CustomerSupport.cshtml" />
-    <Content Include="Views\Dashboard\_Feeds.cshtml" />
+    <Content Include="Views\Report\ProductWiseStock.cshtml" />
+    <Content Include="Views\Report\StockLedger.cshtml" />
+    <Content Include="Views\Report\VendorStockLedger.cshtml" />
+    <Content Include="Views\Report\VendorWiseStock.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="assets\global\plugins\login\" />
     <Folder Include="Content\fonts\" />
-    <Folder Include="Content\img\" />
     <Folder Include="Content\lineicons\" />
   </ItemGroup>
   <ItemGroup>
