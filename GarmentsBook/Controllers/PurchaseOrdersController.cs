@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using GarmentSoft.Models;
 using PagedList;
+using Microsoft.AspNet.Identity;
+
 namespace GarmentSoft.Controllers
 {
     [Authorize]
@@ -49,9 +51,10 @@ namespace GarmentSoft.Controllers
         public ActionResult Create()
         {
             var purchaseOrders = db.PurchaseOrders.Include(p => p.Vendor).Include(p => p.PurchaseDetails);
+            
             int companyId = Convert.ToInt32(Session["CompanyID"]);
-            ViewBag.VendorId = new SelectList(db.Vendors.Where(x => x.VendorTypeId == 1 && x.Company_Id == companyId), "Id", "VendorName");
-            ViewBag.ProductId = new SelectList(db.Products.Where(x => x.IsActive == true && x.Company_Id == companyId), "Id", "ProductName");
+            ViewBag.vendor_id = new SelectList(db.Vendors.Where(x => x.VendorTypeId == 1 && x.Company_Id == companyId), "Id", "VendorName");
+            ViewBag.product_id = new SelectList(db.Products.Where(x => x.IsActive == true && x.Company_Id == companyId), "Id", "ProductName");
             var year_id = Session["FinancialYearID"];
             var year = db.FinancialYears.Find(year_id);
 
@@ -69,8 +72,9 @@ namespace GarmentSoft.Controllers
                 {
                     var year_id = Convert.ToInt32(Session["FinancialYearID"]);
                     var CompanyId = Convert.ToInt32(Session["CompanyID"]);
-                    var creaded_by = Convert.ToInt32(Session["UserID"]);
+                    var creaded_by = User.Identity.GetUserId<int>();
                     DateTime dtDate = DateTime.Now;
+                    
                     purchaseOrder.Created = dtDate;
                     purchaseOrder.Updated = dtDate;
                     purchaseOrder.created_by_id = creaded_by;
@@ -83,12 +87,12 @@ namespace GarmentSoft.Controllers
                     transaction.Commit();
                     return Json(Convert.ToString(scope_id));
                 }
-                catch
+                catch(Exception ex)
                 {
                     transaction.Rollback();
                     int companyId = Convert.ToInt32(Session["CompanyID"]);
-                    ViewBag.VendorId = new SelectList(db.Vendors.Where(x => x.VendorTypeId == 1 && x.Company_Id == companyId), "Id", "VendorName", purchaseOrder.vendor_id);
-                    ViewBag.ProductId = new SelectList(db.Products.Where(x => x.IsActive == true && x.Company_Id == companyId), "Id", "ProductName");
+                    ViewBag.vendor_id = new SelectList(db.Vendors.Where(x => x.VendorTypeId == 1 && x.Company_Id == companyId), "Id", "VendorName", purchaseOrder.vendor_id);
+                    ViewBag.product_id = new SelectList(db.Products.Where(x => x.IsActive == true && x.Company_Id == companyId), "Id", "ProductName");
                 }
             }
             return Json("0");
@@ -107,8 +111,8 @@ namespace GarmentSoft.Controllers
                 return HttpNotFound();
             }
 
-            ViewBag.VendorId = new SelectList(db.Vendors.Where(x => x.VendorTypeId == 1 && x.Company_Id == companyId), "Id", "VendorName", purchaseOrder.vendor_id);
-            ViewBag.ProductId = new SelectList(db.Products.Where(x => x.IsActive == true && x.Company_Id == companyId), "Id", "ProductName");
+            ViewBag.vendor_id = new SelectList(db.Vendors.Where(x => x.VendorTypeId == 1 && x.Company_Id == companyId), "Id", "VendorName", purchaseOrder.vendor_id);
+            ViewBag.product_id = new SelectList(db.Products.Where(x => x.IsActive == true && x.Company_Id == companyId), "Id", "ProductName");
             var year_id = Session["FinancialYearID"];
             var year = db.FinancialYears.Find(year_id);
 
@@ -145,12 +149,12 @@ namespace GarmentSoft.Controllers
                     transaction.Commit();
                     return Json(Convert.ToString(purchaseOrder.Id));
                 }
-                catch
+                catch(Exception ex)
                 {
                     transaction.Rollback();
                     int companyId = Convert.ToInt32(Session["CompanyID"]);
-                    ViewBag.VendorId = new SelectList(db.Vendors.Where(x => x.VendorTypeId == 1 && x.Company_Id == companyId), "Id", "VendorName", purchaseOrder.vendor_id);
-                    ViewBag.ProductId = new SelectList(db.Products.Where(x => x.IsActive == true && x.Company_Id == companyId), "Id", "ProductName");
+                    ViewBag.vendor_id = new SelectList(db.Vendors.Where(x => x.VendorTypeId == 1 && x.Company_Id == companyId), "Id", "VendorName", purchaseOrder.vendor_id);
+                    ViewBag.product_id = new SelectList(db.Products.Where(x => x.IsActive == true && x.Company_Id == companyId), "Id", "ProductName");
                 }
             }
             return Json("0");

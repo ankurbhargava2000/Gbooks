@@ -40,7 +40,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>Vendor</label>
-                            @Html.DropDownList("VendorId", null, htmlAttributes: new { @class = "form-control", @id = "Vendor" })
+                            @Html.DropDownList("vendor_id", null, htmlAttributes: new { @class = "form-control", @id = "Vendor" })
                             @Html.ValidationMessageFor(model => model.vendor_id, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -109,8 +109,8 @@
                             <tr>
                                 <td>
                                     <label class="productName">Product Name</label>
-                                    @Html.DropDownList("ProductId", null, htmlAttributes: new { @class = "form-control", @id = "product" })
-                                    @Html.ValidationMessage("ProductId", "", new { @class = "text-danger productIdVal" })
+                                    @Html.DropDownList("product_id", null, htmlAttributes: new { @class = "form-control", @id = "product" })
+                                    @Html.ValidationMessage("product_id", "", new { @class = "text-danger productIdVal" })
                                 </td>
                                 <td>
                                     <label class="productQuantity">Quantity</label>
@@ -331,7 +331,7 @@
 
                         if ($('.productId', this).val() != null && $('.productId', this).val() != "0" && $('.productId', this).val() != "") {
                             var orderItem = {
-                                ProductId: $('.productId', this).val(),
+                                product_id: $('.productId', this).val(),
                                 Quantity: $('.productQuantity', this).text(),
                                 Fold: $('.productFold', this).text(),
                                 Rate: $('.productRate', this).text()
@@ -342,7 +342,7 @@
                     )
 
                     var data = {
-                        VendorId: $('#Vendor').val(),
+                        vendor_id: $('#Vendor').val(),
                         InvoiceNumber: $('#InvoiceNo').val(),
                         InvoiceDate: $('#InvoiceDate').val(),
                         dispatch_document_number: $('#DocumentNo').val(),
