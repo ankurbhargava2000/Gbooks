@@ -663,6 +663,7 @@
     <Content Include="Views\Report\StockLedger.cshtml" />
     <Content Include="Views\Report\VendorStockLedger.cshtml" />
     <Content Include="Views\Report\VendorWiseStock.cshtml" />
+    <Content Include="Views\TailorChalanSend\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

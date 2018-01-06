@@ -1,4 +1,4 @@
-﻿@model StockManager.Models.TailorChalanSend
+﻿@model GarmentSoft.Models.TailorChalanSend
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -26,9 +26,9 @@
         {
             <div class="container-fluid">
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                @Html.HiddenFor(x => x.created_by, new { Value = Session["UserID"] })
-                @Html.HiddenFor(x => x.financial_year, new { Value = Session["FinancialYearID"] })
-                @Html.HiddenFor(x => x.CompanyId, new { Value = Session["CompanyId"] })
+                @Html.HiddenFor(x => x.created_by_id, new { Value = Session["UserID"] })
+                @Html.HiddenFor(x => x.FinancialYear_Id, new { Value = Session["FinancialYearID"] })
+                @Html.HiddenFor(x => x.Company_Id, new { Value = Session["CompanyId"] })
                 <div class="row">
                     <div class="col-md-2">
                         <div class="form-group">
@@ -40,8 +40,8 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>Vendor</label>
-                            @Html.DropDownList("VendorId", null, htmlAttributes: new { @class = "form-control", @id = "Vendor" })
-                            @Html.ValidationMessageFor(model => model.VendorId, "", new { @class = "text-danger" })
+                            @Html.DropDownList("vendor_id", null, htmlAttributes: new { @class = "form-control", @id = "Vendor" })
+                            @Html.ValidationMessageFor(model => model.vendor_id, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -184,7 +184,7 @@
 
                         if ($('.productId', this).val() != null && $('.productId', this).val() != "0" && $('.productId', this).val() != "") {
                             var orderItem = {
-                                ProductId: $('.productId', this).val(),
+                                product_id: $('.productId', this).val(),
                                 Quantity: $('.productQuantity', this).text()
                             }
                             list.push(orderItem);
@@ -193,7 +193,7 @@
                     )
 
                     var data = {
-                        VendorId: $('#Vendor').val(),
+                        vendor_id: $('#Vendor').val(),
                         ChalanNo: $('#ChalanNo').val(),
                         ChalanDate: $('#ChalanDate').val(),
                         bill_number: $('#DispatchThrough').val(),

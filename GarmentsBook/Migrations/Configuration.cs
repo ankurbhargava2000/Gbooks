@@ -10,6 +10,7 @@ namespace GarmentSoft.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(GarmentSoft.Models.ApplicationDbContext context)

@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using PagedList;
+using Microsoft.AspNet.Identity;
 
 namespace GarmentSoft.Controllers
 {
@@ -51,7 +52,7 @@ namespace GarmentSoft.Controllers
         {
             var CompanyId = Convert.ToInt32(Session["CompanyID"]);
             ViewBag.ProductId = new SelectList(db.Products.Where(x => x.ProductTypeId == 1 && x.IsActive == true && x.Company_Id == CompanyId), "Id", "ProductName");
-            ViewBag.VendorId = new SelectList(db.Vendors.Where(x => x.VendorTypeId == 3 && x.Company_Id == CompanyId), "Id", "VendorName");
+            ViewBag.vendor_id = new SelectList(db.Vendors.Where(x => x.VendorTypeId == 3 && x.Company_Id == CompanyId), "Id", "VendorName");
 
             var year_id = Session["FinancialYearID"];
             var year = db.FinancialYears.Find(year_id);
@@ -83,7 +84,7 @@ namespace GarmentSoft.Controllers
                 {
                     var year_id = Convert.ToInt32(Session["FinancialYearID"]);
 
-                    var creaded_by = Convert.ToInt32(Session["UserID"]);
+                    var creaded_by = User.Identity.GetUserId<int>();
                     DateTime dtDate = DateTime.Now;
                     tailorChalan.Created = dtDate;
                     tailorChalan.Updated = dtDate;
@@ -100,7 +101,7 @@ namespace GarmentSoft.Controllers
                 catch
                 {
                     transaction.Rollback();
-                    ViewBag.VendorId = new SelectList(db.Vendors.Where(x => x.VendorTypeId == 3 && x.Company_Id == CompanyId), "Id", "VendorName", tailorChalan.vendor_id);
+                    ViewBag.vendor_id = new SelectList(db.Vendors.Where(x => x.VendorTypeId == 3 && x.Company_Id == CompanyId), "Id", "VendorName", tailorChalan.vendor_id);
                     ViewBag.ProductId = new SelectList(db.Products.Where(x => x.ProductTypeId == 1 && x.IsActive == true && x.Company_Id == CompanyId), "Id", "ProductName");
                 }
             }
@@ -122,7 +123,7 @@ namespace GarmentSoft.Controllers
             }
 
             ViewBag.ProductId = new SelectList(db.Products.Where(x => x.ProductTypeId == 1 && x.IsActive == true && x.Company_Id == CompanyId), "Id", "ProductName", tailorChalan.vendor_id);
-            ViewBag.VendorId = new SelectList(db.Vendors.Where(x => x.VendorTypeId == 3 && x.Company_Id == CompanyId), "Id", "VendorName", tailorChalan.vendor_id);
+            ViewBag.vendor_id = new SelectList(db.Vendors.Where(x => x.VendorTypeId == 3 && x.Company_Id == CompanyId), "Id", "VendorName", tailorChalan.vendor_id);
             var year_id = Session["FinancialYearID"];
             var year = db.FinancialYears.Find(year_id);
 
@@ -148,6 +149,8 @@ namespace GarmentSoft.Controllers
                             db.Entry(objTailorDetails).State = EntityState.Added;
                             db.SaveChanges();
                         }
+                        else
+                            db.Entry(objTailorDetails).State = EntityState.Modified;
                     }
 
                     while (tailorChalan.TailorChalanSendDetails.Where(x => x.Id == 0).Count() > 0)
@@ -162,10 +165,10 @@ namespace GarmentSoft.Controllers
                     transaction.Commit();
                     return Json(Convert.ToString(tailorChalan.Id));
                 }
-                catch
+                catch(Exception ex)
                 {
                     transaction.Rollback();
-                    ViewBag.VendorId = new SelectList(db.Vendors.Where(x => x.VendorTypeId == 3 && x.Company_Id == CompanyId), "Id", "VendorName", tailorChalan.vendor_id);
+                    ViewBag.vendor_id = new SelectList(db.Vendors.Where(x => x.VendorTypeId == 3 && x.Company_Id == CompanyId), "Id", "VendorName", tailorChalan.vendor_id);
                     ViewBag.ProductId = new SelectList(db.Products.Where(x => x.ProductTypeId == 1 && x.IsActive == true && x.Company_Id == CompanyId), "Id", "ProductName");
                 }
             }

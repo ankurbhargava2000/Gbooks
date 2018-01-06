@@ -28,7 +28,7 @@
         {
         <div class="container-fluid">
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.HiddenFor(x => x.created_by, new { Value = Session["UserID"] })
+            @Html.HiddenFor(x => x.created_by_id, new { Value = Session["UserID"] })
             @Html.HiddenFor(x => x.FinancialYear_Id, new { Value = Session["FinancialYearID"] })
             @Html.HiddenFor(x => x.Company_Id, new { Value = Session["CompanyId"] })
             <div class="row">
@@ -42,8 +42,8 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label>Vendor</label>
-                        @Html.DropDownList("VendorId", null, htmlAttributes: new { @class = "form-control col-md-7", @id = "Vendor" })
-                        @Html.ValidationMessageFor(model => model.VendorId, "", new { @class = "text-danger VendorVal" })
+                        @Html.DropDownList("vendor_id", null, htmlAttributes: new { @class = "form-control col-md-7", @id = "Vendor" })
+                        @Html.ValidationMessageFor(model => model.vendor_id, "", new { @class = "text-danger VendorVal" })
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -103,13 +103,13 @@
 
                         foreach (var matarial in item.TailorMaterialDetails)
                         {
-                        matarialDetail += (matarialDetail == "" ? "{\"ProductId\":\"" : ",{\"ProductId\":\"") + matarial.ProductId + "\",\"Quantity\":\"" + matarial.Quantity + "\",\"Id\":\"" + matarial.Id + "\",\"TailorChalanDetailsId\":\"" + matarial.TailorChalanDetailsId + "\"}     ";
+                        matarialDetail += (matarialDetail == "" ? "{\"ProductId\":\"" : ",{\"ProductId\":\"") + matarial.product_id + "\",\"Quantity\":\"" + matarial.Quantity + "\",\"Id\":\"" + matarial.Id + "\",\"TailorChalanDetailsId\":\"" + matarial.TailorChalanDetailsId + "\"}     ";
                         }
 
                         <tr>
                             <td>
                                 <label class="productName">@item.Product.ProductName</label>
-                                <input type="hidden" class="productId" value="@item.ProductId" />
+                                <input type="hidden" class="productId" value="@item.product_id" />
                                 <input type="hidden" class="rowCount" value="@count" />
                                 <input type="hidden" class="matarialDetails" value="@matarialDetail" />
                                 <input type="hidden" class="Id" value="@item.Id" />
@@ -473,8 +473,8 @@
                     if ($('.productId', this).val() != null && $('.productId', this).val() != "0" && $('.productId', this).val() != "") {
                         var orderItem = {
                             Id:$('.Id', this).val(),
-                            ChalanId: @Model.Id,
-                            ProductId: $('.productId', this).val(),
+                            chalan_id: @Model.Id,
+                            product_id: $('.productId', this).val(),
                             Quantity: $('.productQuantity', this).text(),
                             LaborCost: $('.laborCost', this).text(),
                             TailorMaterialDetails: getmatatialobj($('.matarialDetails', this).val())
@@ -486,11 +486,14 @@
 
                 var data = {
                     Id:@Model.Id,
-                    VendorId: $('#Vendor').val(),
+                    vendor_id: $('#Vendor').val(),
                     ChalanDate: $('#ChalanDate').val(),
                     ChalanNo: $('#ChalanNo').val(),
                     bill_number: $('#BillNo').val(),
                     Description: $('#Description').val(),
+                    Company_Id: @Model.Company_Id,
+                    FinancialYear_Id: @Model.FinancialYear_Id,
+                    created_by_id: @Model.created_by_id,
                     TailorChalanDetails: list,
                 }
 

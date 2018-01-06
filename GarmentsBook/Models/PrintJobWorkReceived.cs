@@ -30,6 +30,9 @@ namespace GarmentSoft.Models
         public Nullable<System.DateTime> Updated { get; set; }
         public string Description { get; set; }
         public int chalan_number { get; set; }
+        public Nullable<decimal> GrossCharges { get; set; }
+        public Nullable<decimal> Tax { get; set; }
+        public Nullable<decimal> NetCharges { get; set; }
 
         [ForeignKey("User")]
         public Nullable<int> created_by_id { get; set; }

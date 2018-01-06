@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using GarmentSoft.Models;
 using PagedList;
+using Microsoft.AspNet.Identity;
+
 namespace GarmentSoft.Controllers
 {
     [Authorize]
@@ -81,7 +83,7 @@ namespace GarmentSoft.Controllers
             {
                 var year_id = Convert.ToInt32(Session["FinancialYearID"]);
                 var CompanyId = Convert.ToInt32(Session["CompanyID"]);
-                var creaded_by = Convert.ToInt32(Session["UserID"]);
+                var creaded_by = User.Identity.GetUserId<int>();
                 try
                 {
 
@@ -98,7 +100,7 @@ namespace GarmentSoft.Controllers
                     transaction.Commit();
                     return Json(Convert.ToString(scope_id));
                 }
-                catch
+                catch(Exception ex)
                 {
                     transaction.Rollback();
                     ViewBag.vendor_id = new SelectList(db.Vendors.Where(x => x.VendorTypeId == 2 && x.Company_Id == CompanyId), "Id", "VendorName", printerChalan.vendor_id);
@@ -148,6 +150,8 @@ namespace GarmentSoft.Controllers
                             db.Entry(objPurchaseDetails).State = EntityState.Added;
                             db.SaveChanges();
                         }
+                        else
+                            db.Entry(objPurchaseDetails).State = EntityState.Modified;
                     }
 
                     while (printerChalan.PrinterChalanDetails.Where(x => x.Id == 0).Count() > 0)
@@ -161,7 +165,7 @@ namespace GarmentSoft.Controllers
                     transaction.Commit();
                     return Json(Convert.ToString(printerChalan.Id));
                 }
-                catch
+                catch(Exception ex)
                 {
                     transaction.Rollback();
                     ViewBag.vendor_id = new SelectList(db.Vendors.Where(x => x.VendorTypeId == 2 && x.Company_Id == companyId), "Id", "VendorName", printerChalan.vendor_id);

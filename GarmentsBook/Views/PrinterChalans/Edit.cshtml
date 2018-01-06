@@ -26,9 +26,10 @@
         {
             <div class="container-fluid">
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                @Html.HiddenFor(x => x.created_by, new { Value = Session["UserID"] })
+                @Html.HiddenFor(x => x.created_by_id, new { Value = Session["UserID"] })
                 @Html.HiddenFor(x => x.FinancialYear_Id, new { Value = Session["FinancialYearID"] })
                 @Html.HiddenFor(x => x.Company_Id, new { Value = Session["CompanyId"] })
+                @Html.HiddenFor(x => x.Created, new { htmlAttributes = new { @class = "form-control", @id = "CreatedDate" } })
                 <div class="row">
                     <div class="col-md-2">
                         <div class="form-group">
@@ -40,8 +41,8 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>Vendor</label>
-                            @Html.DropDownList("VendorId", null, htmlAttributes: new { @class = "form-control", @id = "Vendor" })
-                            @Html.ValidationMessageFor(model => model.VendorId, "", new { @class = "text-danger" })
+                            @Html.DropDownList("vendor_id", null, htmlAttributes: new { @class = "form-control", @id = "Vendor" })
+                            @Html.ValidationMessageFor(model => model.vendor_id, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -332,8 +333,8 @@
                         if ($('.productId', this).val() != null && $('.productId', this).val() != "0" && $('.productId', this).val() != "") {
                             var orderItem = {
                                 Id:$('.Id', this).val(),
-                                ChalanId: @Model.Id,
-                                ProductId: $('.productId', this).val(),
+                                chalan_id: @Model.Id,
+                                product_id: $('.productId', this).val(),
                                 Quantity: $('.productQuantity', this).text(),
                                 Fold: $('.productFold', this).text(),
                                 ExpectedFold: $('.expectedFold', this).text(),
@@ -346,16 +347,17 @@
 
                     var data = {
                         Id:@Model.Id,
-                        VendorId: $('#Vendor').val(),
+                        vendor_id: $('#Vendor').val(),
                         chalan_number: $('#ChalanNo').val(),
                         ChalanDate: $('#ChalanDate').val(),
                         dispatch_document_number: $('#DocumentNo').val(),
                         dispatched_through: $('#DispatchThrough').val(),
                         bale_numbers: $('#BaleNo').val(),
                         Description: $('#Description').val(),
-                        CompanyId: @Model.Company_Id,
-                        financial_year: @Model.FinancialYear_Id,
-                        created_by: @Model.created_by,
+                        Company_Id: @Model.Company_Id,
+                        FinancialYear_Id: @Model.FinancialYear_Id,
+                        created_by_id: @Model.created_by_id,
+                        Created: $('#CreatedDate').val(),
                         PrinterChalanDetails: list
                     }
 
@@ -444,7 +446,7 @@
                     $('#expectedfold').siblings('span.expectedFoldVal').text("Please Enter number in Expected Fold.");
                     result = false;
                 }
-                
+
                 if ($('#shrinkage').val() != "") {
                     var x = parseFloat($('#shrinkage').val());
                     if (isNaN(x) || x < 0 || x > 100) {
@@ -461,7 +463,7 @@
                         }
                     }
                 }
-                
+
                 if (isNaN($('#shrinkage').val())) {
                     $('#shrinkage').siblings('span.ShrinkageVal').text("Please Enter number in shrinkage value.");
                     result = false;
@@ -543,7 +545,7 @@
             });
 
             function CalculateTotal() {
-                
+
             };
         });
     </script>

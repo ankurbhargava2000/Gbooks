@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using GarmentSoft.Models;
 using PagedList;
+using Microsoft.AspNet.Identity;
+
 namespace GarmentSoft.Controllers
 {
     [Authorize]
@@ -69,7 +71,7 @@ namespace GarmentSoft.Controllers
                 try
                 {
                     var year_id = Convert.ToInt32(Session["FinancialYearID"]);
-                    var creaded_by = Convert.ToInt32(Session["UserID"]);
+                    var creaded_by = User.Identity.GetUserId<int>();
                     DateTime dtDate = DateTime.Now;
                     printerChalan.Created = dtDate;
                     printerChalan.Updated = dtDate;
@@ -83,7 +85,7 @@ namespace GarmentSoft.Controllers
                     transaction.Commit();
                     return Json(Convert.ToString(scope_id));
                 }
-                catch
+                catch(Exception ex)
                 {
                     transaction.Rollback();
                     ViewBag.vendor_id = new SelectList(db.Vendors.Where(x => x.VendorTypeId == 2 && x.Company_Id == companyId), "Id", "VendorName", printerChalan.vendor_id);
@@ -133,6 +135,8 @@ namespace GarmentSoft.Controllers
                             db.Entry(objPurchaseDetails).State = EntityState.Added;
                             db.SaveChanges();
                         }
+                        else
+                            db.Entry(objPurchaseDetails).State = EntityState.Modified;
                     }
 
                     while (printerChalan.PrintJobWorkReceivedDetails.Where(x => x.Id == 0).Count() > 0)
