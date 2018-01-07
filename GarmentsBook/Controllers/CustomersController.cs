@@ -14,7 +14,7 @@ namespace GarmentSoft.Controllers
     [Authorize]
     public class CustomersController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private GarmentBooksEntities db = new GarmentBooksEntities();
 
         // GET: Customers
         public ActionResult Index()

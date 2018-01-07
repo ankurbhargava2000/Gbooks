@@ -10,7 +10,7 @@ namespace GarmentSoft.Controllers
     [Authorize]
     public class SharedController : Controller
     {
-        // ApplicationDbContext db = new ApplicationDbContext();
+        // GarmentBooksEntities db = new GarmentBooksEntities();
         [HttpPost]
         public ActionResult ChnageCompany(string CompanyId)
         {

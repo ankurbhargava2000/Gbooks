@@ -11,17 +11,12 @@ namespace GarmentSoft.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations.Schema;
-
+    
     public partial class InvoiceDetail
     {
         public int Id { get; set; }
-
-        [ForeignKey("InvoiceMaster")]
         public Nullable<int> invoice_id { get; set; }
-
-        [ForeignKey("Product")]
-        public Nullable<int> product_id { get; set; }
+        public int product_id { get; set; }
         public double sale_rate { get; set; }
         public int quantity { get; set; }
         public double discount { get; set; }

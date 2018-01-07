@@ -11,8 +11,7 @@ namespace GarmentSoft.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations.Schema;
-
+    
     public partial class Product
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,27 +19,21 @@ namespace GarmentSoft.Models
         {
             this.InvoiceDetails = new HashSet<InvoiceDetail>();
             this.PrinterChalanDetails = new HashSet<PrinterChalanDetail>();
+            this.PrintJobWorkReceivedDetails = new HashSet<PrintJobWorkReceivedDetail>();
             this.PurchaseDetails = new HashSet<PurchaseDetail>();
-            this.TailorChalanSendDetails = new HashSet<TailorChalanSendDetail>();
             this.TailorChalanDetails = new HashSet<TailorChalanDetail>();
+            this.TailorChalanSendDetails = new HashSet<TailorChalanSendDetail>();
             this.TailorMaterialDetails = new HashSet<TailorMaterialDetail>();
             this.Transactions = new HashSet<Transaction>();
-            this.PrintJobWorkReceivedDetails = new HashSet<PrintJobWorkReceivedDetail>();
         }
     
         public int Id { get; set; }
-
-        [ForeignKey("ProductType")]
         public Nullable<int> ProductTypeId { get; set; }
         public string ProductName { get; set; }
         public string Description { get; set; }
         public bool IsActive { get; set; }
-
-        [ForeignKey("MeasuringUnit")]
         public Nullable<int> unit_id { get; set; }
         public Nullable<decimal> SellingPrice { get; set; }
-
-        [ForeignKey("Company")]
         public int Company_Id { get; set; }
     
         public virtual Company Company { get; set; }
@@ -49,18 +42,18 @@ namespace GarmentSoft.Models
         public virtual MeasuringUnit MeasuringUnit { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PrinterChalanDetail> PrinterChalanDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PrintJobWorkReceivedDetail> PrintJobWorkReceivedDetails { get; set; }
         public virtual ProductType ProductType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PurchaseDetail> PurchaseDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TailorChalanSendDetail> TailorChalanSendDetails { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TailorChalanDetail> TailorChalanDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TailorChalanSendDetail> TailorChalanSendDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TailorMaterialDetail> TailorMaterialDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Transaction> Transactions { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PrintJobWorkReceivedDetail> PrintJobWorkReceivedDetails { get; set; }
     }
 }

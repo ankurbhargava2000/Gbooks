@@ -11,8 +11,7 @@ namespace GarmentSoft.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations.Schema;
-
+    
     public partial class TailorChalanDetail
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,11 +21,7 @@ namespace GarmentSoft.Models
         }
     
         public int Id { get; set; }
-
-        [ForeignKey("TailorChalan")]
         public int chalan_id { get; set; }
-
-        [ForeignKey("Product")]
         public int product_id { get; set; }
         public Nullable<decimal> Quantity { get; set; }
         public Nullable<decimal> LaborCost { get; set; }
@@ -34,7 +29,7 @@ namespace GarmentSoft.Models
     
         public virtual Product Product { get; set; }
         public virtual TailorChalan TailorChalan { get; set; }
-        
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TailorMaterialDetail> TailorMaterialDetails { get; set; }
     }
 }

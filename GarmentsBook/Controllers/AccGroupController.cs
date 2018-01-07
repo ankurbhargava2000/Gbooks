@@ -15,13 +15,13 @@ namespace GarmentSoft.Controllers
     public class AccGroupController : Controller
     {
         
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private GarmentBooksEntities db = new GarmentBooksEntities();
 
         // GET: accGroup
         public ActionResult Index()
         {
             var CompanyId = Convert.ToInt32(Session["CompanyID"]);
-            var accGroup = db.acc_groups
+            var accGroup = db.acc_group
                 .Where(x => x.Company_Id == CompanyId && x.is_base_group==false)
                 .ToList();
             return View(accGroup);
@@ -35,7 +35,7 @@ namespace GarmentSoft.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var companyId = 1;
-            acc_group vendor = db.acc_groups.Where(x => x.Company_Id == companyId && x.id == id && x.is_base_group == false).FirstOrDefault();
+            acc_group vendor = db.acc_group.Where(x => x.Company_Id == companyId && x.id == id && x.is_base_group == false).FirstOrDefault();
             if (vendor == null)
             {
                 return HttpNotFound();
@@ -46,7 +46,7 @@ namespace GarmentSoft.Controllers
         // GET: accGroup/Create
         public ActionResult Create()
         {
-            ViewBag.base_group = new SelectList(db.acc_groups.Where(x => x.is_base_group == true), "id", "name");
+            ViewBag.base_group = new SelectList(db.acc_group.Where(x => x.is_base_group == true), "id", "name");
             return View();
         }
 
@@ -60,14 +60,14 @@ namespace GarmentSoft.Controllers
             var CompanyId = Convert.ToInt32(Session["CompanyID"]);
             if (ModelState.IsValid)
             {
-                db.acc_groups.Add(vendor);
+                db.acc_group.Add(vendor);
                 vendor.Company_Id = CompanyId;
                 vendor.is_base_group = false;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.base_group = new SelectList(db.acc_groups.Where(x => x.is_base_group == true), "id", "name");
+            ViewBag.base_group = new SelectList(db.acc_group.Where(x => x.is_base_group == true), "id", "name");
             return View(vendor);
         }
 
@@ -79,12 +79,12 @@ namespace GarmentSoft.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var companyId = Convert.ToInt32(Session["CompanyID"]);
-            acc_group vendor = db.acc_groups.Where(x => x.Company_Id == companyId && x.id == id && x.is_base_group == false).FirstOrDefault();
+            acc_group vendor = db.acc_group.Where(x => x.Company_Id == companyId && x.id == id && x.is_base_group == false).FirstOrDefault();
             if (vendor == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.base_group = new SelectList(db.acc_groups.Where(x => x.is_base_group == true && x.Company_Id == null), "id", "name", vendor.base_group_id);
+            ViewBag.base_group = new SelectList(db.acc_group.Where(x => x.is_base_group == true && x.Company_Id == null), "id", "name", vendor.base_group_id);
             return View(vendor);
         }
 
@@ -104,7 +104,7 @@ namespace GarmentSoft.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.base_group = new SelectList(db.acc_groups.Where(x => x.is_base_group == true && x.Company_Id == null), "id", "name");
+            ViewBag.base_group = new SelectList(db.acc_group.Where(x => x.is_base_group == true && x.Company_Id == null), "id", "name");
             return View(vendor);
         }
 
@@ -116,12 +116,12 @@ namespace GarmentSoft.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var companyId = Convert.ToInt32(Session["CompanyID"]);
-            acc_group vendor = db.acc_groups.Where(x => x.Company_Id == companyId && x.id == id && x.is_base_group == false).FirstOrDefault();
+            acc_group vendor = db.acc_group.Where(x => x.Company_Id == companyId && x.id == id && x.is_base_group == false).FirstOrDefault();
             if (vendor == null)
             {
                 return HttpNotFound();
             }
-            db.acc_groups.Remove(vendor);
+            db.acc_group.Remove(vendor);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -132,8 +132,8 @@ namespace GarmentSoft.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             var companyId = Convert.ToInt32(Session["CompanyID"]);
-            acc_group vendor = db.acc_groups.Where(x => x.Company_Id == companyId && x.id == id && x.is_base_group == false).FirstOrDefault();
-            db.acc_groups.Remove(vendor);
+            acc_group vendor = db.acc_group.Where(x => x.Company_Id == companyId && x.id == id && x.is_base_group == false).FirstOrDefault();
+            db.acc_group.Remove(vendor);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

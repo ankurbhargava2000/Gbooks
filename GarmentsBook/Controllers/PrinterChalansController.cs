@@ -15,7 +15,7 @@ namespace GarmentSoft.Controllers
     [Authorize]
     public class PrinterChalansController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private GarmentBooksEntities db = new GarmentBooksEntities();
 
         // GET: PrinterChalans
         public ActionResult Index(int? page)

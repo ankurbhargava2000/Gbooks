@@ -11,20 +11,15 @@ namespace GarmentSoft.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations.Schema;
-
+    
     public partial class UserCompany
     {
         public int Id { get; set; }
-
-        [ForeignKey("Company")]
         public Nullable<int> Company_Id { get; set; }
-
-        [ForeignKey("User")]
         public Nullable<int> UserId { get; set; }
         public Nullable<bool> is_default { get; set; }
     
+        public virtual AspNetUser AspNetUser { get; set; }
         public virtual Company Company { get; set; }
-        public virtual ApplicationUser User { get; set; }
     }
 }

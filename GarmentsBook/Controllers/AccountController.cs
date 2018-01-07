@@ -19,6 +19,7 @@ namespace GarmentSoft.Controllers
     public class AccountController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        private GarmentBooksEntities db1 = new GarmentBooksEntities();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -85,7 +86,7 @@ namespace GarmentSoft.Controllers
                 case SignInStatus.Success:
                 {
                     ApplicationUser user = await UserManager.FindAsync(model.Email, model.Password);
-                        var associatedCompanyList = db.UserCompanies.Where(x => x.UserId == user.Id).Include(x => x.Company).Select(y => new
+                        var associatedCompanyList = db1.UserCompanies.Where(x => x.UserId == user.Id).Include(x => x.Company).Select(y => new
                         {
                             CompanyId = y.Company.Id,
                             CompanyName = y.Company.Name,

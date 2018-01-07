@@ -11,8 +11,7 @@ namespace GarmentSoft.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations.Schema;
-
+    
     public partial class PurchaseOrder
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,8 +21,6 @@ namespace GarmentSoft.Models
         }
     
         public int Id { get; set; }
-
-        [ForeignKey("Vendor")]
         public int vendor_id { get; set; }
         public int InvoiceNumber { get; set; }
         public System.DateTime InvoiceDate { get; set; }
@@ -34,25 +31,19 @@ namespace GarmentSoft.Models
         public string dispatched_through { get; set; }
         public string destination { get; set; }
         public string bale_numbers { get; set; }
-
-        [ForeignKey("User")]
         public Nullable<int> created_by_id { get; set; }
-
-        [ForeignKey("FinancialYear")]
         public Nullable<int> FinancialYear_Id { get; set; }
         public Nullable<decimal> GrossAmount { get; set; }
         public Nullable<decimal> Discount { get; set; }
         public Nullable<decimal> Tax { get; set; }
         public Nullable<decimal> NetAmount { get; set; }
-
-        [ForeignKey("Company")]
         public int Company_Id { get; set; }
     
+        public virtual AspNetUser AspNetUser { get; set; }
         public virtual Company Company { get; set; }
         public virtual FinancialYear FinancialYear { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PurchaseDetail> PurchaseDetails { get; set; }
         public virtual Vendor Vendor { get; set; }
-        public virtual ApplicationUser User { get; set; }
     }
 }

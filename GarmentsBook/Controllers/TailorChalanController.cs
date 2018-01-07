@@ -15,7 +15,7 @@ namespace GarmentSoft.Controllers
     [Authorize]
     public class TailorChalanController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private GarmentBooksEntities db = new GarmentBooksEntities();
 
         // GET: TailorChalan
         public ActionResult Index(int? id, int? page)

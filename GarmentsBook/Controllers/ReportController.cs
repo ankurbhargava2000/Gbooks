@@ -17,7 +17,7 @@ namespace GarmentSoft.Controllers
     [Authorize]
     public class ReportController : Controller
     {
-        //private ApplicationDbContext db = new ApplicationDbContext();
+        //private GarmentBooksEntities db = new GarmentBooksEntities();
         //public ActionResult VendorWiseStock(string dates, int vendor_id=0)
         //{
 

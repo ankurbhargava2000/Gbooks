@@ -11,25 +11,18 @@ namespace GarmentSoft.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations.Schema;
-
+    
     public partial class Transaction
     {
         public int Id { get; set; }
-
-        [ForeignKey("Vendor")]
         public Nullable<int> vendor_id { get; set; }
-
-        [ForeignKey("Product")]
         public int product_id { get; set; }
         public int Quantity { get; set; }
         public Nullable<System.DateTime> Created { get; set; }
         public Nullable<System.DateTime> Updated { get; set; }
         public string Type { get; set; }
         public Nullable<int> ReferenceRecordId { get; set; }
-        [ForeignKey("FinancialYear")]
         public Nullable<int> FinancialYear_Id { get; set; }
-        [ForeignKey("Company")]
         public int Company_Id { get; set; }
     
         public virtual Company Company { get; set; }

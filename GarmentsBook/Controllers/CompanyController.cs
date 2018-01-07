@@ -14,7 +14,7 @@ namespace GarmentSoft.Controllers
     [Authorize]
     public class CompanyController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private GarmentBooksEntities db = new GarmentBooksEntities();
 
         // GET: Companies
         public ActionResult Index()
@@ -151,7 +151,7 @@ namespace GarmentSoft.Controllers
                 .Where(x => x.Company_Id == company_id)
                 .ToList();
 
-            var users = db.Users.Where(x => x.TenantId == TenantId).ToList();
+            var users = db.AspNetUsers.Where(x => x.TenantId == TenantId).ToList();
             var addUser = new List<AddUser>();
 
             foreach (var item in users)

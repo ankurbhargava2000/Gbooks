@@ -17,8 +17,8 @@ namespace GarmentSoft.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Tenant()
         {
+            this.AspNetUsers = new HashSet<AspNetUser>();
             this.Companies = new HashSet<Company>();
-            this.Users = new HashSet<ApplicationUser>();
         }
     
         public int Id { get; set; }
@@ -29,12 +29,12 @@ namespace GarmentSoft.Models
         public string City { get; set; }
         public string State { get; set; }
         public string Country { get; set; }
-        
         public string PanNo { get; set; }
         public string GSTNo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Company> Companies { get; set; }
-        public virtual ICollection<ApplicationUser> Users { get; set; }
     }
 }

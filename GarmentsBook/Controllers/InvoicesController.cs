@@ -13,7 +13,7 @@ namespace GarmentSoft.Controllers
     [Authorize]
     public class InvoicesController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private GarmentBooksEntities db = new GarmentBooksEntities();
 
         // GET: InvoiceMasters
         public ActionResult Index()
@@ -23,7 +23,7 @@ namespace GarmentSoft.Controllers
             var invoiceMasters = db.InvoiceMasters
                 .Where(x => x.FinancialYear_Id == year_id && x.Company_Id == CompanyId)
                 .Include(i => i.FinancialYear)
-                .Include(i => i.User)
+                .Include(i => i.AspNetUser)
                 .Include(i => i.Customer)
                 .Include(i => i.Company)
                 .ToList();

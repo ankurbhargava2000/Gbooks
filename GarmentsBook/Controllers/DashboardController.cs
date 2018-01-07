@@ -11,7 +11,7 @@ namespace GarmentSoft.Controllers
     public class DashboardController : Controller
     {
 
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private GarmentBooksEntities db = new GarmentBooksEntities();
 
         [Authorize]
         public ActionResult Index(string strtDate ,string edDate)

@@ -11,16 +11,11 @@ namespace GarmentSoft.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations.Schema;
-
+    
     public partial class TailorMaterialDetail
     {
         public int Id { get; set; }
-
-        [ForeignKey("TailorChalanDetail")]
         public int TailorChalanDetailsId { get; set; }
-
-        [ForeignKey("Product")]
         public int product_id { get; set; }
         public Nullable<decimal> Quantity { get; set; }
         public string Description { get; set; }

@@ -19,9 +19,10 @@ namespace GarmentSoft.Models
         public Nullable<int> voucher_no { get; set; }
         public System.DateTime voucher_date { get; set; }
         public string description { get; set; }
-
-        public virtual FinancialYear FinancialYear { get; set; }
-
+        public Nullable<int> Company_Id { get; set; }
+        public Nullable<int> FinancialYear_Id { get; set; }
+    
         public virtual Company Company { get; set; }
+        public virtual FinancialYear FinancialYear { get; set; }
     }
 }

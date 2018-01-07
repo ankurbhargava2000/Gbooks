@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="620d6c5a48ef49cdb1e481b5f85f566a" Name="Diagram1">
+        <EntityTypeShape EntityType="GarmentBooksModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentBooksModel.acc_group" Width="1.5" PointX="8.25" PointY="30.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentBooksModel.acc_ledger" Width="1.5" PointX="10.5" PointY="32.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentBooksModel.acc_transactions" Width="1.5" PointX="3" PointY="33" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentBooksModel.AspNetRole" Width="1.5" PointX="3.75" PointY="24.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentBooksModel.AspNetUserClaim" Width="1.5" PointX="8.25" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentBooksModel.AspNetUserLogin" Width="1.5" PointX="8.25" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentBooksModel.AspNetUser" Width="1.5" PointX="6" PointY="22.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentBooksModel.Company" Width="1.5" PointX="6" PointY="31.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentBooksModel.Customer" Width="1.5" PointX="8.25" PointY="34.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentBooksModel.FinancialYear" Width="1.5" PointX="0.75" PointY="32.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentBooksModel.InvoiceDetail" Width="1.5" PointX="22.5" PointY="28.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentBooksModel.InvoiceMaster" Width="1.5" PointX="13.5" PointY="32.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentBooksModel.MeasuringUnit" Width="1.5" PointX="12" PointY="24.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentBooksModel.PrinterChalanDetail" Width="1.5" PointX="19.5" PointY="37.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentBooksModel.PrinterChalan" Width="1.5" PointX="11.25" PointY="36.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentBooksModel.PrintJobWorkReceivedDetail" Width="1.5" PointX="19.5" PointY="28" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentBooksModel.PrintJobWorkReceived" Width="1.5" PointX="11.25" PointY="27.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentBooksModel.Product" Width="1.5" PointX="14.25" PointY="27" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentBooksModel.ProductType" Width="1.5" PointX="12" PointY="20.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentBooksModel.PurchaseDetail" Width="1.5" PointX="18.5" PointY="33.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentBooksModel.PurchaseOrder" Width="1.5" PointX="14.25" PointY="37.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentBooksModel.TailorChalanDetail" Width="1.5" PointX="19.5" PointY="24.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentBooksModel.TailorChalan" Width="1.5" PointX="8.25" PointY="25.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentBooksModel.TailorChalanSendDetail" Width="1.5" PointX="16.5" PointY="38" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentBooksModel.TailorChalanSend" Width="1.5" PointX="8.25" PointY="39.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentBooksModel.TailorMaterialDetail" Width="1.5" PointX="21.75" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentBooksModel.Tenant" Width="1.5" PointX="3.75" PointY="28.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentBooksModel.Transaction" Width="1.5" PointX="21.5" PointY="32.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentBooksModel.UserCompany" Width="1.5" PointX="16.25" PointY="33.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentBooksModel.Vendor" Width="1.5" PointX="17.25" PointY="26.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentBooksModel.VendorType" Width="1.5" PointX="15" PointY="23.375" IsExpanded="true" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_acc_group_dbo_acc_group_base_group_id" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_acc_group_dbo_Companies_Company_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_acc_ledger_dbo_acc_group_group_id" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_acc_ledger_dbo_Companies_Company_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_acc_transactions_dbo_Companies_Company_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_acc_transactions_dbo_FinancialYears_FinancialYear_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_AspNetUsers_dbo_Tenants_TenantId" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_InvoiceMasters_dbo_AspNetUsers_created_by_id" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_PrinterChalans_dbo_AspNetUsers_created_by_id" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_PrintJobWorkReceiveds_dbo_AspNetUsers_created_by_id" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_PurchaseOrders_dbo_AspNetUsers_created_by_id" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_TailorChalans_dbo_AspNetUsers_created_by_id" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_TailorChalanSends_dbo_AspNetUsers_created_by_id" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_UserCompanies_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_Companies_dbo_FinancialYears_currentFinYear_id" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_Companies_dbo_Tenants_TenantId" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_Customers_dbo_Companies_Company_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_InvoiceMasters_dbo_Companies_Company_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_PrinterChalans_dbo_Companies_Company_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_PrintJobWorkReceiveds_dbo_Companies_Company_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_Products_dbo_Companies_Company_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_PurchaseOrders_dbo_Companies_Company_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_TailorChalans_dbo_Companies_Company_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_TailorChalanSends_dbo_Companies_Company_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_Transactions_dbo_Companies_Company_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_UserCompanies_dbo_Companies_Company_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_Vendors_dbo_Companies_Company_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_InvoiceMasters_dbo_Customers_customer_id" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_InvoiceMasters_dbo_FinancialYears_FinancialYear_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_PrinterChalans_dbo_FinancialYears_FinancialYear_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_PrintJobWorkReceiveds_dbo_FinancialYears_FinancialYear_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_PurchaseOrders_dbo_FinancialYears_FinancialYear_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_TailorChalans_dbo_FinancialYears_FinancialYear_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_TailorChalanSends_dbo_FinancialYears_FinancialYear_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_Transactions_dbo_FinancialYears_FinancialYear_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_InvoiceDetails_dbo_InvoiceMasters_invoice_id" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_InvoiceDetails_dbo_Products_product_id" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_Products_dbo_MeasuringUnits_unit_id" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_PrinterChalanDetails_dbo_PrinterChalans_chalan_id" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_PrinterChalanDetails_dbo_Products_product_id" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_PrinterChalans_dbo_Vendors_vendor_id" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_PrintJobWorkReceivedDetails_dbo_PrintJobWorkReceiveds_chalan_id" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_PrintJobWorkReceivedDetails_dbo_Products_product_id" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_PrintJobWorkReceiveds_dbo_Vendors_vendor_id" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_Products_dbo_ProductTypes_ProductTypeId" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_PurchaseDetails_dbo_Products_product_id" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_TailorChalanDetails_dbo_Products_product_id" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_TailorChalanSendDetails_dbo_Products_product_id" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_TailorMaterialDetails_dbo_Products_product_id" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_Transactions_dbo_Products_product_id" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_PurchaseDetails_dbo_PurchaseOrders_PurchaseId" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_PurchaseOrders_dbo_Vendors_vendor_id" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_TailorChalanDetails_dbo_TailorChalans_chalan_id" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_TailorMaterialDetails_dbo_TailorChalanDetails_TailorChalanDetailsId" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_TailorChalans_dbo_Vendors_vendor_id" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_TailorChalanSendDetails_dbo_TailorChalanSends_chalan_id" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_TailorChalanSends_dbo_Vendors_vendor_id" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_Transactions_dbo_Vendors_vendor_id" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.FK_dbo_Vendors_dbo_VendorTypes_VendorTypeId" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentBooksModel.AspNetUserRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

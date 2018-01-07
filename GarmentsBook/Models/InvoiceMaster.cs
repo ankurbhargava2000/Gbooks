@@ -11,8 +11,7 @@ namespace GarmentSoft.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations.Schema;
-
+    
     public partial class InvoiceMaster
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -26,24 +25,18 @@ namespace GarmentSoft.Models
         public double gross_amount { get; set; }
         public double net_amount { get; set; }
         public Nullable<System.DateTime> created_on { get; set; }
-
-        [ForeignKey("User")]
         public Nullable<int> created_by_id { get; set; }
-
-        [ForeignKey("FinancialYear")]
         public Nullable<int> FinancialYear_Id { get; set; }
         public Nullable<double> discount { get; set; }
         public Nullable<System.DateTime> created_at { get; set; }
-        [ForeignKey("Company")]
         public int Company_Id { get; set; }
-        [ForeignKey("Customer")]
         public int customer_id { get; set; }
     
+        public virtual AspNetUser AspNetUser { get; set; }
         public virtual Company Company { get; set; }
         public virtual Customer Customer { get; set; }
         public virtual FinancialYear FinancialYear { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<InvoiceDetail> InvoiceDetails { get; set; }
-        public virtual ApplicationUser User { get; set; }
     }
 }
