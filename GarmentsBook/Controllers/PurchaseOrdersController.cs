@@ -136,6 +136,8 @@ namespace GarmentSoft.Controllers
                             db.Entry(objPurchaseDetails).State = EntityState.Added;
                             db.SaveChanges();
                         }
+                        else
+                            db.Entry(objPurchaseDetails).State = EntityState.Modified;
                     }
 
                     while (purchaseOrder.PurchaseDetails.Where(x => x.Id == 0).Count() > 0)

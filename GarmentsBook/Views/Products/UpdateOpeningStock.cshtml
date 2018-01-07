@@ -43,12 +43,12 @@
                     {
                         <tr>
                             <td>
-                                @Html.Hidden("Transactions[" + @i + "].ProductId", item.Id)
+                                @Html.Hidden("Transactions[" + @i + "].product_id", item.Id)
                                 @item.ProductName
                             </td>
                             <td>
                                 @{
-                                    var product = Model.Transactions.Where(x => x.ProductId == item.Id).FirstOrDefault();
+                                    var product = Model.Transactions.Where(x => x.product_id == item.Id).FirstOrDefault();
 
                                     if (product == null)
                                     {

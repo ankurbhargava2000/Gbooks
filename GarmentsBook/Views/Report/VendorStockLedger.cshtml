@@ -1,4 +1,4 @@
-﻿@model  List<StockManager.Models.USP_VendorStockLedger_Result>
+﻿@model  List<GarmentSoft.Models.USP_VendorStockLedger_Result>
 
 @{
     ViewBag.Title = "Vendor Stock Ledger";
@@ -38,9 +38,7 @@
                     <th>
                         Outward Qty
                     </th>                    
-                    <th>
-                        Closing Qty
-                    </th>
+                    
                 </tr>
             </thead>
             @{
@@ -65,9 +63,7 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.OutQTY)
                             </td>
-                            <td>
-                                
-                            </td>
+                            
                             
                         </tr>
                     }

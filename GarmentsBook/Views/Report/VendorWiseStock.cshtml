@@ -1,4 +1,4 @@
-﻿@model  List<StockManager.Models.USP_VendorWiseStock_Result>
+﻿@model  List<GarmentSoft.Models.USP_VendorWiseStock_Result>
 
 @{
     ViewBag.Title = "Vendor Wise Stock Summary";
@@ -87,7 +87,7 @@
                     {
                         <tr>
                             <td>
-                                @Html.ActionLink(item.ProductName.ToString(), "VendorStockLedger",new { productId = item.ProductId }, new { @class = "reportLink"})
+                                @Html.ActionLink(item.ProductName.ToString(), "VendorStockLedger",new { productId = item.product_id }, new { @class = "reportLink"})
                                 
                             </td>
                             <td>
@@ -127,9 +127,12 @@
             });
         });
         $(document).ready(function () {
-            $('#date_range').daterangepicker({                
-                "startDate": "@ViewBag.StartYear",
-                "endDate": "@ViewBag.EndYear",
+            $('#date_range').daterangepicker({
+                locale: {
+                    format: 'DD-MMM-YYYY'
+                },
+                "startDate": "@ViewBag.StartYear.ToString("dd-MMM-yyyy")",
+                "endDate": "@ViewBag.EndYear.ToString("dd-MMM-yyyy")",
                 "minDate": "@ViewBag.MinYear",
                 "maxDate": "@ViewBag.MaxYear"
             }, function (start, end, label) {

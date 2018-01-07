@@ -313,6 +313,7 @@
     <Compile Include="Models\Product.cs">
       <DependentUpon>GarmentSoft.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ProductExtend.cs" />
     <Compile Include="Models\ProductType.cs">
       <DependentUpon>GarmentSoft.tt</DependentUpon>
     </Compile>

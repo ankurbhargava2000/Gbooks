@@ -46,7 +46,7 @@ namespace GarmentSoft.Controllers
         public ActionResult Create()
         {
             ViewBag.ProductTypeId = new SelectList(db.ProductTypes, "Id", "ProductTypeName");
-            ViewBag.Unit = new SelectList(db.MeasuringUnits, "Id", "Name");
+            ViewBag.unit_id = new SelectList(db.MeasuringUnits, "Id", "Name");
             return View();
         }
 
@@ -65,7 +65,7 @@ namespace GarmentSoft.Controllers
             }
 
             ViewBag.ProductTypeId = new SelectList(db.ProductTypes, "Id", "ProductTypeName", product.ProductTypeId);
-            ViewBag.Unit = new SelectList(db.MeasuringUnits, "Id", "Name", product.unit_id);
+            ViewBag.unit_id = new SelectList(db.MeasuringUnits, "Id", "Name", product.unit_id);
 
             return View(product);
         }
@@ -84,7 +84,7 @@ namespace GarmentSoft.Controllers
                 return HttpNotFound();
             }
             ViewBag.ProductTypeId = new SelectList(db.ProductTypes, "Id", "ProductTypeName", product.ProductTypeId);
-            ViewBag.Unit = new SelectList(db.MeasuringUnits, "Id", "Name", product.unit_id);
+            ViewBag.unit_id = new SelectList(db.MeasuringUnits, "Id", "Name", product.unit_id);
             return View(product);
         }
 
@@ -102,7 +102,7 @@ namespace GarmentSoft.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.ProductTypeId = new SelectList(db.ProductTypes, "Id", "ProductTypeName", product.ProductTypeId);
-            ViewBag.Unit = new SelectList(db.MeasuringUnits, "Id", "Name", product.unit_id);
+            ViewBag.unit_id = new SelectList(db.MeasuringUnits, "Id", "Name", product.unit_id);
             return View(product);
         }
 
@@ -205,7 +205,7 @@ namespace GarmentSoft.Controllers
                     return RedirectToAction("Index");
 
                 }
-                catch
+                catch(Exception e)
                 {
 
                 }
