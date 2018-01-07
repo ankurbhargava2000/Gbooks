@@ -1,4 +1,4 @@
-﻿@model  List<StockManager.Models.USP_ProductWiseStock_Result>
+﻿@model  List<GarmentSoft.Models.USP_ProductWiseStock_Result>
 
 @{
     ViewBag.Title = "Stock Summary Report";
@@ -76,8 +76,7 @@
                         {
                             <tr>
                                 <td>
-                                    @*@Html.ActionLink(item.ProductName.ToString(), "StockLedger", new { productId = item.Id })*@
-                                    ASDF
+                                    @Html.ActionLink(item.ProductName.ToString(), "StockLedger", new { productId = item.Id })
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Unit)
