@@ -66,7 +66,7 @@ namespace GarmentSoft.Controllers
             return View();
         }
 
-        //
+
         // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
@@ -422,8 +422,8 @@ namespace GarmentSoft.Controllers
 
         //
         // POST: /Account/LogOff
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        
+        
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);

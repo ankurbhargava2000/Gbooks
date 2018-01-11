@@ -157,7 +157,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row">
+                                        <div class="row" id="dvmaterial">
                                             <div class="form-group margin-top-20">
                                                 <div class="details form-horizontal">
                                                     <h4 class="modal-title">
@@ -228,8 +228,37 @@
     <!-- DateRanger -->
     <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+
     <script type="text/javascript">
+        
+        function hidematerialdtl()
+        {
+            var prodId = $("#product").val();
+            $.ajax({
+                type: 'POST',
+                url: '/tailorChalan/IsFinishedproduct',
+                data: '{ProdId: "' + prodId + '" }',
+                contentType: 'application/json',
+                success: function (data) {
+                    if (data == "true") {
+                        $('#dvmaterial').css('display', '');
+                    }
+                    else {
+                        $('#dvmaterial').css('display', 'none');
+                    }
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        }
+
+
         $(document).ready(function () {
+            hidematerialdtl();
+            $("#product").change(function (event) {
+                hidematerialdtl();
+            });
             $('#ChalanDate').daterangepicker({
                 locale: {
                     format: 'DD-MMM-YYYY'

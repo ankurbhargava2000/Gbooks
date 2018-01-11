@@ -31,7 +31,7 @@
                     <th>
                         Chalan Date
                     </th>
-                    <th>
+                    <th class="hidecol">
                         Actions
                     </th>
                 </tr>
@@ -49,7 +49,7 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.ChalanDate)
                         </td>
-                        <td>
+                        <td class="hidecol">
                             @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-warning btn-xs" })
                             |
                             @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { onclick = "return confirm('Are you sure you wish to delete this printer chalan?');", @class = "btn btn-danger btn-xs" })

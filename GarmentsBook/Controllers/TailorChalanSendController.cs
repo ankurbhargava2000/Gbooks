@@ -108,6 +108,13 @@ namespace GarmentSoft.Controllers
             return Json("0");
         }
 
+        public JsonResult GetTransactionBuyingRate(int? ProdId)
+        {
+            //var currFrom = db.Currencys.Where(u = > u.CurrencyId == eventIdB).First();
+            return Json(Convert.ToString("true") , JsonRequestBehavior.AllowGet);
+        }
+
+
         // GET: TailorChalan/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -165,7 +172,7 @@ namespace GarmentSoft.Controllers
                     transaction.Commit();
                     return Json(Convert.ToString(tailorChalan.Id));
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     transaction.Rollback();
                     ViewBag.vendor_id = new SelectList(db.Vendors.Where(x => x.VendorTypeId == 3 && x.Company_Id == CompanyId), "Id", "VendorName", tailorChalan.vendor_id);

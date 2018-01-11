@@ -104,6 +104,34 @@ namespace GarmentSoft.Controllers
             }
             return Json("0");
         }
+        
+        //For visible true/false material Detail For Finished Product
+        [HttpPost]
+        public JsonResult IsFinishedproduct(int ProdId)
+        {
+            string strresult = "false";
+            try
+            {
+
+                var prod = db.Products.Find(ProdId);
+                if (prod.ProductTypeId == 2)
+                {
+                    strresult = "true";
+                }
+                else
+                {
+                    strresult = "false";
+                }
+
+                return Json(strresult);
+            }
+            catch (Exception)
+            {
+
+                return Json(strresult);
+            }
+
+        }
 
         // GET: TailorChalan/Edit/5
         public ActionResult Edit(int? id)
@@ -174,7 +202,7 @@ namespace GarmentSoft.Controllers
                     transaction.Commit();
                     return Json(Convert.ToString(tailorChalan.Id));
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     transaction.Rollback();
                     ViewBag.vendor_id = new SelectList(db.Vendors.Where(x => x.VendorTypeId == 3 && x.Company_Id == CompanyId), "Id", "VendorName", tailorChalan.vendor_id);
