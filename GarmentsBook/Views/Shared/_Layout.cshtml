@@ -100,7 +100,9 @@
     <!-- END THEME LAYOUT SCRIPTS -->
     <!-- BEGIN DATATABLES -->
     <script src="~/assets/global/plugins/datatables/datatables.min.js"></script>
+    <script src="~/assets/global/plugins/datatables/buttons.print.min.js"></script>
     <script src="~/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js"></script>
+
     <!-- END DATATABLES -->
     <script>
         $(document).ready(function () {
@@ -116,7 +118,7 @@
                 buttons: [
                 {
                     extend: 'pdfHtml5',
-                    title: '' + strTitle + '',
+                    title: '',
                     init: function(dt, node, config) {
                         config.title = strTitle;
                     },
