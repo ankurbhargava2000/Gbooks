@@ -9,6 +9,10 @@
     <meta content="" name="description" />
     <meta content="" name="author" />
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    
+
+    
+
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     <link href="~/assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
@@ -16,7 +20,7 @@
     <!-- END GLOBAL MANDATORY STYLES -->
     <!-- BEGIN THEME GLOBAL STYLES -->
     <link href="~/assets/global/css/components-md.min.css" rel="stylesheet" id="style_components" type="text/css" />
-    <link href="~/assets/global/css/plugins-md.min.css" rel="stylesheet" type="text/css" />
+    
     <!-- END THEME GLOBAL STYLES -->
     <!-- BEGIN THEME LAYOUT STYLES -->
     <link href="~/assets/layouts/layout2/css/layout.min.css" rel="stylesheet" type="text/css" />
@@ -28,13 +32,31 @@
     <link href="~/assets/global/plugins/datatables/buttons.dataTables.min.css" rel="stylesheet" />
     <link href="~/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" />
     <!-- END DATATABLES -->
+
+    
+    
+
     <link rel="shortcut icon" href="favicon.ico" />
     <style type="text/css">
-        div.dt-buttons {
+        a.dt-button {
+            border-radius: 25px !important;
+            padding: 3px 19px !important;
+            background-color: white !important;
+            box-shadow: 0 1px 3px rgba(0,0,0,.1), 0 1px 2px rgba(0,0,0,.18) !important;
+            border-color: #ccc !important;
+            font-weight: 600 !important;
+            text-transform: uppercase !important;
+            background-image :none;
+        }
+            a.dt-button:hover {
+                box-shadow: 0 3px 6px rgba(0,0,0,.2), 0 3px 6px rgba(0,0,0,.26) !important;
+            }
+         div.dt-buttons {
             position: relative;
-            float: left !important;
-            margin-top: -1px !important;
-            
+            float: right !important;
+            margin-top: -61px !important;
+            background-color: white !important;
+            margin-right: 100px !important;
         }
         .crimsonred {
             color: rgb(243, 83, 105) !important;
@@ -104,12 +126,17 @@
     <script src="~/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js"></script>
 
     <!-- END DATATABLES -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
     <script>
+        
         $(document).ready(function () {
+
+            $('.js-autocomplete').select2();
+
             var strTitle = '';
             if ($('#hdnexport') != null)
             {
-                 strTitle = $('#hdnexport').val();
+                strTitle = '@Session["CompanyName"]';
             }
 
             $('.jTable').DataTable({
@@ -149,7 +176,7 @@
                         columns: [':visible :not(:last-child)']
                     },
                     customize: function (win) {
-                        $(win.document.body).find('table').addClass('display').css('font-size', '9px');
+                        $(win.document.body).find('table').addClass('display').css('font-size', '10px');
                         $(win.document.body).find('tr:nth-child(odd) td').each(function (index) {
                             $(this).css('background-color', '#D0D0D0');
                         });

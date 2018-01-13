@@ -33,7 +33,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.base_group_id, "Parent Group", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.DropDownList("base_group", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.DropDownList("base_group", null, htmlAttributes: new { @class = "js-autocomplete form-control" })
                         @Html.ValidationMessageFor(model => model.base_group_id, "", new { @class = "text-danger" })
                     </div>
                 </div>

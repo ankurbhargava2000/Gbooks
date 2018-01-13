@@ -40,7 +40,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>Vendor</label>
-                            @Html.DropDownList("vendor_id", null, htmlAttributes: new { @class = "form-control", @id = "Vendor" })
+                            @Html.DropDownList("vendor_id", null, htmlAttributes: new { @class = "js-autocomplete form-control", @id = "Vendor" })
                             @Html.ValidationMessageFor(model => model.vendor_id, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -70,7 +70,7 @@
                             <tr>
                                 <td>
                                     <label class="productName">Product Name</label>
-                                    @Html.DropDownList("ProductId", null, htmlAttributes: new { @class = "form-control", @id = "product" })
+                                    @Html.DropDownList("ProductId", null, htmlAttributes: new { @class = "js-autocomplete form-control", @id = "product" })
                                     @Html.ValidationMessage("ProductId", "", new { @class = "text-danger productIdVal" })
                                 </td>
                                 <td>

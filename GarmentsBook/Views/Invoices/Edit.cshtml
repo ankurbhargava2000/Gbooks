@@ -51,7 +51,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>Vendor</label>
-                            @Html.DropDownList("customer_id", null, htmlAttributes: new { @class = "form-control selectpicker", data_live_search = "on" })
+                            @Html.DropDownList("customer_id", null, htmlAttributes: new { @class = "js-autocomplete form-control selectpicker", data_live_search = "on" })
                             @Html.ValidationMessageFor(model => model.customer_id, "", new { @class = "text-danger" })
                         </div>
                     </div>
