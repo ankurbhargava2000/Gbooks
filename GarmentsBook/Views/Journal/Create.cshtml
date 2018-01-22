@@ -1,0 +1,247 @@
+﻿@model GarmentSoft.Models.acc_transactions
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section css{
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+}
+
+<div class="portlet light">
+    <div class="portlet-title">
+        <div class="caption font-red-sunglo">
+            <i class="icon-speech font-red-sunglo"></i>
+            <span class="caption-subject bold uppercase">Create New Journal</span>
+        </div>
+        <div class="actions">
+            <a href="@Url.Action("Index")" class="btn btn-circle btn-default">
+                <i class="fa fa-arrow-left"></i> Back
+            </a>
+            <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:;" data-original-title="" title="">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="container-fluid">
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(x => x.FinancialYear_Id, new { Value = Session["FinancialYearID"] })
+                @Html.HiddenFor(x => x.Company_Id, new { Value = Session["CompanyId"] })
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Voucher No</label>
+                            @Html.EditorFor(model => model.voucher_no, new { htmlAttributes = new { @class = "form-control", Value = @ViewBag.voucher_no, required = true } })
+                            @Html.ValidationMessageFor(model => model.voucher_no, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Voucher Type</label>
+                            @Html.DropDownList("voucher_type", null, htmlAttributes: new { @class = "js-autocomplete form-control selectpicker", data_live_search = "on" })
+                            @Html.ValidationMessageFor(model => model.voucher_type, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Voucher Date</label>
+                            @Html.EditorFor(model => model.voucher_date, new { htmlAttributes = new { @class = "form-control", Id = "date_range", required = "true" } })
+                            @Html.ValidationMessageFor(model => model.voucher_date, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Description</label>
+                            @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control", Value = @ViewBag.description, required = false } })
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <label>Transaction</label>
+                </div>
+                <div class="row">
+                    <table class="table table-responsive">
+                        <tr>
+                            <td>
+                                
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label>Leger</label>
+                                        @Html.DropDownList("acc_ledger_id", null, htmlAttributes: new { @class = "js-autocomplete form-control selectpicker", data_live_search = "on", id = "ddlLedger" })
+                                        @Html.ValidationMessage("ddlLedger", "", new { @class = "text-danger ddlLedger" })
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label>Trans.Type</label>
+                                        <select class="form-control selectpicker" id="ddlTransType" data-live-search="on">
+                                            <option data-sale-rate="0" value="Cr">Cr</option>
+                                            <option data-sale-rate="0" value="Dr">Dr</option>
+                                        </select>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label>Amount</label>
+                                        @Html.TextBox("amount", "", new { @class = "form-control", id = "txtAmt", required = true })
+                                        @Html.ValidationMessage("AmtVal", "", new { @class = "text-danger AmtVal" })
+
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Description</label>
+                                        @Html.TextBox("description", "", new { @class = "form-control", id = "txtDesc", required = true })
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label>  &nbsp;</label>
+                                        <button id="btnAdd" class="btn btn-block btn-success">
+                                            Add
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    
+                    
+
+                    
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-12">
+                        
+                        <table id="Ledger_table" class="table table-striped table-advance table-hover">
+                            <tr id="productItemRow">
+                                <td>
+                                    <label class="Ledger">Ledger</label>
+                                    <input type="hidden" class="acc_ledger_id" value="" />
+                                    <input type="hidden" class="rowCount" value="" />
+                                </td>
+                                <td>
+                                    <label class="TransType">Trans.Type</label>
+                                </td>
+                                <td>
+                                    <label class="Amount">Amount</label>
+                                </td>
+                                <td>
+                                    <label class="Description">Description</label>
+                                </td>
+                                <td class="itemEditRow"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                </div>
+
+                <div class="row">
+                    <div>
+                        <button id="btnSubmit" type="button" class="btn btn-block btn-success">
+                            Save Journal
+                        </button>
+                    </div>
+                </div>
+            
+        
+</div>
+        }
+        </div> 
+@section Scripts {
+
+    <script src="~/Scripts/js/jquery-1.8.3.min.js"></script>
+    <script src="~/Scripts/js/jquery.validate.min.js"></script>
+    <script src="~/Scripts/js/jquery.validate.unobtrusive.min.js"></script>
+
+    <!-- DateRanger -->
+    <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+
+<script >
+    $(document).ready(function () {
+        $('.selectpicker').selectpicker();
+
+        $('#btnAdd').click(function () {
+            //validation and add order items
+            
+            var isAllValid = validateModel();
+            if (isAllValid) {
+                var $newRow = $('#productItemRow').clone().removeAttr('id');
+
+                $('.acc_ledger_id', $newRow).val($('#ddlLedger').val());
+                $('.Ledger', $newRow).text($('#ddlLedger option:selected').text());
+                $('.TransType', $newRow).text($('#ddlTransType').val());
+                $('.Amount', $newRow).text($('#txtAmt').val().toFixed(2));
+                $('.Description', $newRow).text($('#txtDesc').val());
+                $('.rowCount', $newRow).val($('#Ledger_table tr').length);
+                $('.itemEditRow', $newRow).append('<button type="button" class="btn btn-danger btn-xs remove" title="Delete" ><i class="fa fa-trash-o"></i></button>');
+                $('#Ledger_table').append($newRow);
+                $('#ddlLedger').val('0');
+                $('#ddlTransType').val('Dr');
+                $('#txtAmt').val('');
+                $('#txtDesc').val('');
+                $('#ddlLedger').focus();
+              }
+        });
+
+        function validateModel() {
+            var result = true;
+            if ($('#ddlLedger').val() == "") {
+                $('#ddlLedger').siblings('span.ddlLedger').text("Please Select Ledger.");
+                $('#ddlLedger').focus();
+                result = false;
+            }
+            if ($('#txtAmt').val() == "") {
+                $('#txtAmt').siblings('span.AmtVal').text("Please Enter Amount.");
+                $('#txtAmt').focus();
+                result = false;
+            }
+            if (isNaN($('#txtAmt').val())) {
+                $('#txtAmt').siblings('span.AmtVal').text("Please Enter number in Amount.");
+                $('#txtAmt').focus();
+                result = false;
+            }
+            
+            //$('#tailorChalanItems tbody tr').each(function (index, ele) {
+            //    if ($('.productId', this).val() == $('#product').val()) {
+            //        $('#product').siblings('span.productIdVal').text("Product is already added.");
+            //        result = false;
+            //    }
+            //});
+            return result;
+        }
+
+        $('#txtAmt').change(function () {
+            if ($('#txtAmt').val() != "" && !isNaN($('#txtAmt').val())) {
+                $('#txtAmt').siblings('span.AmtVal').text("");
+            }
+        });
+        $('#date_range').daterangepicker({
+            locale: {
+                format: 'DD-MMM-YYYY'
+            },
+            "singleDatePicker": true,
+            "startDate": "@(DateTime.Now.ToString("dd-MMM-yyyy"))",
+               "minDate": "@ViewBag.StartYear",
+               "maxDate": "@ViewBag.EndYear"
+    });
+    });
+    </script>    
+}

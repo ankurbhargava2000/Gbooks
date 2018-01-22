@@ -11,7 +11,8 @@
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     
 
-    
+
+    <link href="~/assets/global/css/select2.min.css" rel="stylesheet" />
 
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
@@ -132,6 +133,10 @@
         $(document).ready(function () {
 
             $('.js-autocomplete').select2();
+            $('#product').select2({
+                dropdownParent: $('#itemModel')
+            });
+            
 
             var strTitle = '';
             if ($('#hdnexport') != null)

@@ -14,6 +14,12 @@ namespace GarmentSoft.Models
     
     public partial class acc_ledger
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public acc_ledger()
+        {
+            this.acc_transactions_details = new HashSet<acc_transactions_details>();
+        }
+    
         public int id { get; set; }
         public string name { get; set; }
         public string description { get; set; }
@@ -22,5 +28,7 @@ namespace GarmentSoft.Models
     
         public virtual acc_group acc_group { get; set; }
         public virtual Company Company { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<acc_transactions_details> acc_transactions_details { get; set; }
     }
 }

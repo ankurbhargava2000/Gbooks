@@ -1,4 +1,5 @@
 ﻿@model GarmentSoft.Models.TailorChalan
+
 @{
     ViewBag.Title = "Create New Tailor Chalan";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -7,6 +8,15 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
 }
+<style>
+    .modal-open .select2-dropdown {
+        z-index: 10060;
+    }
+
+    .modal-open .select2-close-mask {
+        z-index: 10055;
+    }
+</style>
 <div class="portlet light">
     <div class="portlet-title">
         <div class="caption font-red-sunglo">
@@ -25,6 +35,7 @@
         @using (Html.BeginForm())
         {
             <div class="container-fluid">
+                
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 @Html.HiddenFor(x => x.created_by_id, new { Value = Session["UserID"] })
                 @Html.HiddenFor(x => x.FinancialYear_Id, new { Value = Session["FinancialYearID"] })
@@ -106,7 +117,7 @@
                     </div>
                 </div>
             </div>
-            <div class="modal fade" tabindex="-1" id="itemModel"
+            <div class="modal fade"  id="itemModel"
                  data-keyboard="false" data-backdrop="static">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
@@ -126,7 +137,7 @@
                                                     <label>Product</label>
                                                 </div>
                                                 <div class="col-md-10">
-                                                    @Html.DropDownList("ProductId", null, htmlAttributes: new { @class = "js-autocomplete form-control", @id = "product" })
+                                                    @Html.DropDownList("ProductId", null, htmlAttributes: new { @class = "form-control col-md-7", @id = "product" })
                                                     @Html.ValidationMessage("ProductId", "", new { @class = "text-danger productIdVal" })
                                                 </div>
                                             </div>
@@ -138,6 +149,7 @@
                                                         <label>Quantity</label>
                                                     </div>
                                                     <div class="col-md-10">
+                                                        
                                                         @Html.Editor("Quantity", new { htmlAttributes = new { @class = "form-control", @id = "quantity" } })
                                                         @Html.ValidationMessage("Quantity", "", new { @class = "text-danger quantityVal" })
                                                     </div>
@@ -230,7 +242,7 @@
     <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
 
     <script type="text/javascript">
-        
+
         function hidematerialdtl()
         {
             var prodId = $("#product").val();
@@ -297,7 +309,7 @@
                     //$('#tailorMaterialDetails').append($newRow);
                     var $newRow = $('#cloneRow').clone(true, true).removeAttr('id').css('display', 'inline');
                     $('.materialId', $newRow).removeAttr('id').val($('#materialId').val());
-                    $('.materialQuantity', $newRow).removeAttr('id').val($('#materialQuantity').val());                    
+                    $('.materialQuantity', $newRow).removeAttr('id').val($('#materialQuantity').val());
                     $('.remove', $newRow).append('<button type="button" class="btn btn-danger btn-xs removeItem" title="Delete" ><i class="fa fa-trash-o"></i></button>');
                     $('#tailorMaterialDetails').append($newRow);
                     $('#materialQuantity').val('');
@@ -541,5 +553,9 @@
             });
 
         });
+
+       
+
+
     </script>
 }

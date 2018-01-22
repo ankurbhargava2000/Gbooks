@@ -99,6 +99,9 @@
         <AssociationConnector Association="GarmentSoft.FK_dbo_Transactions_dbo_Vendors_vendor_id" ManuallyRouted="false" />
         <AssociationConnector Association="GarmentSoft.FK_dbo_Vendors_dbo_VendorTypes_VendorTypeId" ManuallyRouted="false" />
         <AssociationConnector Association="GarmentSoft.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="GarmentSoft.acc_transactions_details" Width="1.5" PointX="16.75" PointY="41.125" />
+        <AssociationConnector Association="GarmentSoft.FK_acc_transactions_details_acc_ledger" />
+        <AssociationConnector Association="GarmentSoft.FK_acc_transactions_details_acc_transactions" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

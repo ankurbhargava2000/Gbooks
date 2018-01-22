@@ -220,6 +220,7 @@
     <Compile Include="Controllers\FinancialYearController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InvoicesController.cs" />
+    <Compile Include="Controllers\JournalController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PrinterChalansController.cs" />
     <Compile Include="Controllers\PrintJobWorkReceivedController.cs" />
@@ -244,6 +245,9 @@
       <DependentUpon>GarmentSoft.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\acc_transactions.cs">
+      <DependentUpon>GarmentSoft.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\acc_transactions_details.cs">
       <DependentUpon>GarmentSoft.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AspNetRole.cs">
@@ -378,8 +382,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\global\css\login.min.css" />
+    <Content Include="assets\global\css\select2.css" />
+    <Content Include="assets\global\css\select2.min.css" />
     <Content Include="assets\global\plugins\bootstrap-switch\css\bootstrap-switch.min.css" />
     <Content Include="assets\global\plugins\bootstrap-switch\js\bootstrap-switch.min.js" />
+    <Content Include="assets\global\plugins\datatables\buttons.dataTables.min.css" />
+    <Content Include="assets\global\plugins\datatables\buttons.print.min.js" />
     <Content Include="assets\global\plugins\date_range_picker\daterangepicker.css" />
     <Content Include="assets\global\plugins\date_range_picker\daterangepicker.js" />
     <Content Include="assets\global\plugins\date_range_picker\moment.min.js" />
@@ -800,6 +808,11 @@
     <Content Include="Views\Report\VendorStockLedger.cshtml" />
     <Content Include="Views\Report\VendorWiseStock.cshtml" />
     <Content Include="Views\TailorChalanSend\Create.cshtml" />
+    <Content Include="Views\Journal\Create.cshtml" />
+    <Content Include="Views\Journal\Delete.cshtml" />
+    <Content Include="Views\Journal\Details.cshtml" />
+    <Content Include="Views\Journal\Edit.cshtml" />
+    <Content Include="Views\Journal\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

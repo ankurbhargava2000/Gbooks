@@ -14,6 +14,12 @@ namespace GarmentSoft.Models
     
     public partial class acc_transactions
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public acc_transactions()
+        {
+            this.acc_transactions_details = new HashSet<acc_transactions_details>();
+        }
+    
         public int id { get; set; }
         public int voucher_type { get; set; }
         public Nullable<int> voucher_no { get; set; }
@@ -24,5 +30,7 @@ namespace GarmentSoft.Models
     
         public virtual Company Company { get; set; }
         public virtual FinancialYear FinancialYear { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<acc_transactions_details> acc_transactions_details { get; set; }
     }
 }

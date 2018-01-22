@@ -8,6 +8,17 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
 }
+<style>
+    .modal-open .select2-dropdown {
+        z-index: 10060;
+    }
+
+    .modal-open .select2-close-mask {
+        z-index: 10055;
+    }
+
+</style>
+
 <div class="portlet light">
     <div class="portlet-title">
         <div class="caption font-red-sunglo">
@@ -167,7 +178,7 @@
                                                 <label>Product</label>
                                             </div>
                                             <div class="col-md-10">
-                                                @Html.DropDownList("ProductId", null, htmlAttributes: new { @class = "js-autocomplete form-control", @id = "product" })
+                                                @Html.DropDownList("ProductId", null, htmlAttributes: new { @class = "form-control", @id = "product" })
                                                 @Html.ValidationMessage("ProductId", "", new { @class = "text-danger productIdVal" })
                                                 <input type="hidden" class="IdEdit" id="IdEdit" />
                                                 <input type="hidden" class="countEdit" id="countEdit" />
@@ -224,22 +235,22 @@
                                                             <input type="hidden" class="TailorChalanDetailsId" value="" />
                                                         </td>
                                                         <td class="col-md-3 col-xs-12">
-                                                            <input type="text" id="materialQuantity" class="materialQuantity" value="0" />
+                                                            <input type="text" id="materialQuantity" class="materialQuantity form-control" value="0" />
                                                             @Html.ValidationMessage("materialQuantity", "", new { @class = "text-danger materialQuantityVal" })
                                                         </td>
                                                         <td class="col-md-4 col-xs-12">
-                                                            <input type="button" id="addNewMaterial" value="add Material" class="btn-xs btn-success" />
+                                                            <input type="button" id="addNewMaterial" value="add Material" class="btn-xs btn-success form-control" />
                                                         </td>
                                                     </tr>
                                                     <tr class="mycontainer" id="cloneRow" style="display:none">
                                                         <td class="col-md-3 col-xs-12">
-                                                            @Html.DropDownList("MaterialId", null, htmlAttributes: new { @class = "js-autocomplete materialId" })
+                                                            @Html.DropDownList("MaterialId", null, htmlAttributes: new { @class = "materialId form-control" })
                                                             @Html.ValidationMessage("materialId", "", new { @class = "text-danger materialIdVal" })
                                                             <input type="hidden" class="Id" value="" />
                                                             <input type="hidden" class="TailorChalanDetailsId" value="" />
                                                         </td>
                                                         <td class="col-md-3 col-xs-12">
-                                                            <input type="text" class="materialQuantity" value="0" />
+                                                            <input type="text" class="materialQuantity form-control" value="0" />
                                                             @Html.ValidationMessage("materialQuantity", "", new { @class = "text-danger materialQuantityVal" })
                                                         </td>
                                                         <td class="remove"></td>
