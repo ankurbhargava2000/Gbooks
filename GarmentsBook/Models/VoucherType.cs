@@ -12,26 +12,18 @@ namespace GarmentSoft.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class acc_transactions
+    public partial class VoucherType
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public acc_transactions()
+        public VoucherType()
         {
-            this.acc_transactions_details = new HashSet<acc_transactions_details>();
+            this.acc_transactions = new HashSet<acc_transactions>();
         }
     
         public int id { get; set; }
-        public int voucher_type { get; set; }
-        public Nullable<int> voucher_no { get; set; }
-        public System.DateTime voucher_date { get; set; }
-        public string description { get; set; }
-        public Nullable<int> Company_Id { get; set; }
-        public Nullable<int> FinancialYear_Id { get; set; }
+        public string VoucherName { get; set; }
     
-        public virtual Company Company { get; set; }
-        public virtual FinancialYear FinancialYear { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<acc_transactions_details> acc_transactions_details { get; set; }
-        public virtual VoucherType VoucherType { get; set; }
+        public virtual ICollection<acc_transactions> acc_transactions { get; set; }
     }
 }

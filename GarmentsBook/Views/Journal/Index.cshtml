@@ -1,63 +1,65 @@
-﻿@model IEnumerable<GarmentSoft.Models.acc_transactions>
+﻿
+@model IEnumerable<GarmentSoft.Models.acc_transactions>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Journal Entry";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<div class="portlet light">
+    <div class="portlet-title">
+        <div class="caption font-red-sunglo">
+            <i class="icon-speech font-red-sunglo"></i>
+            <span class="caption-subject bold uppercase">Journal Entry</span>
+        </div>
+        <div class="actions">
+            <a href="@Url.Action("Create")" class="btn btn-circle btn-default">
+                <i class="fa fa-plus"></i> New
+            </a>
+            <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:;" data-original-title="" title="">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <table class="jTable table table-striped table-advance table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        Voucher Number
+                    </th>
+                    <th>
+                        Voucher Type
+                    </th>
+                    <th>
+                        Voucher Date
+                    </th>
+                    <th class="hidecol">
+                        Actions
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.voucher_no)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.VoucherType.VoucherName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.voucher_date)
+                        </td>
+                        <td class="hidecol">
+                            @Html.ActionLink("Edit", "Edit", new { id = item.id }, new { @class = "btn btn-warning btn-xs" })
+                            |
+                            @Html.ActionLink("Delete", "DeleteConfirmed", new { id = item.id }, new { onclick = "return confirm('Are you sure you wish to delete this printer chalan?');", @class = "btn btn-danger btn-xs" })
+                        </td>
+                    </tr>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.voucher_type)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.voucher_no)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.voucher_date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Company.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FinancialYear.Name)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.voucher_type)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.voucher_no)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.voucher_date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Company.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FinancialYear.Name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
-}
-
-</table>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

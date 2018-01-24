@@ -102,6 +102,8 @@
         <EntityTypeShape EntityType="GarmentSoft.acc_transactions_details" Width="1.5" PointX="16.75" PointY="41.125" />
         <AssociationConnector Association="GarmentSoft.FK_acc_transactions_details_acc_ledger" />
         <AssociationConnector Association="GarmentSoft.FK_acc_transactions_details_acc_transactions" />
+        <EntityTypeShape EntityType="GarmentSoft.VoucherType" Width="1.5" PointX="3.375" PointY="0.75" />
+        <AssociationConnector Association="GarmentSoft.FK_dbo_acc_transactions_dbo_VoucherType" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

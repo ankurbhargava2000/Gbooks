@@ -40,28 +40,28 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>Voucher No</label>
-                            @Html.EditorFor(model => model.voucher_no, new { htmlAttributes = new { @class = "form-control", Value = @ViewBag.voucher_no, required = true } })
-                            @Html.ValidationMessageFor(model => model.voucher_no, "", new { @class = "text-danger" })
+                            @Html.EditorFor(model => model.voucher_no, new { htmlAttributes = new { @class = "form-control", Value = @ViewBag.voucher_no, required = true, id="txtVoucherNo" } })
+                            @Html.ValidationMessageFor(model => model.voucher_no, "", new { @class = "text-danger voucherNoVal" })
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>Voucher Type</label>
-                            @Html.DropDownList("voucher_type", null, htmlAttributes: new { @class = "js-autocomplete form-control selectpicker", data_live_search = "on" })
-                            @Html.ValidationMessageFor(model => model.voucher_type, "", new { @class = "text-danger" })
+                            @Html.DropDownList("voucher_type", null, htmlAttributes: new { @class = "js-autocomplete form-control selectpicker", data_live_search = "on",id="ddlVoucherType" })
+                            @Html.ValidationMessageFor(model => model.voucher_type, "", new { @class = "text-danger voucherType" })
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>Voucher Date</label>
                             @Html.EditorFor(model => model.voucher_date, new { htmlAttributes = new { @class = "form-control", Id = "date_range", required = "true" } })
-                            @Html.ValidationMessageFor(model => model.voucher_date, "", new { @class = "text-danger" })
+                            @Html.ValidationMessageFor(model => model.voucher_date, "", new { @class = "text-danger voucherDate" })
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label>Description</label>
-                            @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control", Value = @ViewBag.description, required = false } })
+                            @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control", Value = @ViewBag.description, required = false,id="txtDescription" } })
                             
                         </div>
                     </div>
@@ -78,7 +78,7 @@
                                     <div class="form-group">
                                         <label>Leger</label>
                                         @Html.DropDownList("acc_ledger_id", null, htmlAttributes: new { @class = "js-autocomplete form-control selectpicker", data_live_search = "on", id = "ddlLedger" })
-                                        @Html.ValidationMessage("ddlLedger", "", new { @class = "text-danger ddlLedger" })
+                                        @Html.ValidationMessage("ddlLedger", "", new { @class = "text-danger LedgerVal" })
                                     </div>
                                 </div>
                                 <div class="col-md-2">
@@ -94,7 +94,7 @@
                                 <div class="col-md-2">
                                     <div class="form-group">
                                         <label>Amount</label>
-                                        @Html.TextBox("amount", "", new { @class = "form-control", id = "txtAmt", required = true })
+                                        @Html.TextBox("amount", "", new { @class = "form-control", id = "txtAmt", required = true, style = "text-align:right;" })
                                         @Html.ValidationMessage("AmtVal", "", new { @class = "text-danger AmtVal" })
 
                                         
@@ -109,7 +109,7 @@
                                 <div class="col-md-2">
                                     <div class="form-group">
                                         <label>  &nbsp;</label>
-                                        <button id="btnAdd" class="btn btn-block btn-success">
+                                        <button id="btnAdd" type="button" class="btn btn-block btn-success">
                                             Add
                                         </button>
                                     </div>
@@ -176,6 +176,7 @@
 
 <script >
     $(document).ready(function () {
+        $('#txtVoucherNo').focus();
         $('.selectpicker').selectpicker();
 
         $('#btnAdd').click(function () {
@@ -188,43 +189,131 @@
                 $('.acc_ledger_id', $newRow).val($('#ddlLedger').val());
                 $('.Ledger', $newRow).text($('#ddlLedger option:selected').text());
                 $('.TransType', $newRow).text($('#ddlTransType').val());
-                $('.Amount', $newRow).text($('#txtAmt').val().toFixed(2));
+                var AmtVal = parseInt($('#txtAmt').val());
+                AmtVal = (AmtVal).toFixed(2)
+                $('.Amount', $newRow).text(AmtVal);
+                //$('.Amount', $newRow).text($('#txtAmt').val());
                 $('.Description', $newRow).text($('#txtDesc').val());
                 $('.rowCount', $newRow).val($('#Ledger_table tr').length);
                 $('.itemEditRow', $newRow).append('<button type="button" class="btn btn-danger btn-xs remove" title="Delete" ><i class="fa fa-trash-o"></i></button>');
                 $('#Ledger_table').append($newRow);
-                $('#ddlLedger').val('0');
-                $('#ddlTransType').val('Dr');
                 $('#txtAmt').val('');
                 $('#txtDesc').val('');
                 $('#ddlLedger').focus();
+                return false;
               }
         });
 
+        $('#btnSubmit').click(function () {
+            //validation and add order items
+
+            var isAllValid = validateMainPage();
+            if (isAllValid) {
+                var list = [];
+                var errorItemCount = 0;
+                $('#Ledger_table tbody tr').each(function (index, ele) {
+
+                    if ($('.acc_ledger_id', this).val() != null && $('.acc_ledger_id', this).val() != "0" && $('.acc_ledger_id', this).val() != "") {
+                        var orderItem = {
+                            acc_ledger_id: $('.acc_ledger_id', this).val(),
+                            trans_type: $('.TransType', this).text(),
+                            amount: $('.Amount', this).text(),
+                            description: $('.Description', this).text()
+                            
+                        }
+                        list.push(orderItem);
+                    }
+                }
+                );
+
+                var data = {
+                    voucher_no: $('#txtVoucherNo').val(),
+                    voucher_type: $('#ddlVoucherType').val(),
+                    voucher_date: $('#date_range').val(),
+                    Description: $('#txtDescription').val(),
+                    acc_transactions_details: list,
+                }
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/Journal/Create',
+                    data: JSON.stringify(data),
+                    contentType: 'application/json',
+                    success: function (data) {
+                        if (data != "0") {
+                            alert('Journal Entry Saved Successfully.');
+                            list = [];
+                            $('#txtVoucherNo,#txtDescription').val('');
+                            $('#Ledger_table tbody tr').each(function (index, ele) {
+                                if ($('.acc_ledger_id', this).val() != null && $('.acc_ledger_id', this).val() != "0" && $('.acc_ledger_id', this).val() != "") {
+                                    $('#Ledger_table tbody tr', this).remove();
+                                }
+                            });
+                            
+                            window.location.href = '/Journal/Details/' + data;
+                        }
+                        else {
+                            
+                            alert('Error in saving Journal Entry');
+                        }
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            }
+        });
+
+
+
         function validateModel() {
             var result = true;
-            if ($('#ddlLedger').val() == "") {
-                $('#ddlLedger').siblings('span.ddlLedger').text("Please Select Ledger.");
+            
+            if ($('#ddlLedger').val() == null ) {
+                $('.LedgerVal').text("Please Select Ledger.");
                 $('#ddlLedger').focus();
-                result = false;
+                return false;
             }
             if ($('#txtAmt').val() == "") {
                 $('#txtAmt').siblings('span.AmtVal').text("Please Enter Amount.");
                 $('#txtAmt').focus();
-                result = false;
+                return false;
             }
+
             if (isNaN($('#txtAmt').val())) {
-                $('#txtAmt').siblings('span.AmtVal').text("Please Enter number in Amount.");
+                $('#txtAmt').siblings('span.AmtVal').text("Please Enter number in Amount Properly.");
                 $('#txtAmt').focus();
-                result = false;
+                return false;
+            }
+
+            if (parseInt($('#txtAmt').val()) < 0) {
+                $('#txtAmt').siblings('span.AmtVal').text("Please Enter number in Amount Properly.");
+                $('#txtAmt').focus();
+                return false;
             }
             
-            //$('#tailorChalanItems tbody tr').each(function (index, ele) {
-            //    if ($('.productId', this).val() == $('#product').val()) {
-            //        $('#product').siblings('span.productIdVal').text("Product is already added.");
-            //        result = false;
-            //    }
-            //});
+            return chkTable();
+            
+        }
+
+        function chkTable()
+        {
+            var result = true;
+            $('.LedgerVal').text("");
+            $('#Ledger_table tbody tr').each(function (index, ele) {
+            
+                var LedgerId = $('.acc_ledger_id', this).val()
+                var ddlLedgerVal = $('#ddlLedger').val();
+                var transtype = $('.TransType', this).text();
+                var ddlTransTypeVal = $('#ddlTransType').val();
+
+                if ((LedgerId == ddlLedgerVal) && (transtype == ddlTransTypeVal)) {
+                    $('.LedgerVal').text("Ledger is already added.");
+                    result = false;
+                    return false;
+                }
+            });
+
             return result;
         }
 
@@ -233,6 +322,76 @@
                 $('#txtAmt').siblings('span.AmtVal').text("");
             }
         });
+
+        $('#ddlLedger').change(function () {
+            if ($('#ddlLedger').val() != null) {
+                $('.LedgerVal').text("");
+            }
+        });
+
+        $('#ddlTransType').change(function () {
+            if ($('#ddlTransType').val() != null) {
+                $('.LedgerVal').text("");
+            }
+        });
+
+        function validateMainPage() {
+            var result = true;
+            if ($('#txtVoucherNo').val() == "") {
+                $('#txtVoucherNo').siblings('span.voucherNoVal').text("Please Enter Voucher Number.");
+                $('#txtVoucherNo').focus();
+                result = false;
+            }
+            
+            if (isNaN($('#txtVoucherNo').val()) && parseInt($('#txtVoucherNo').val()) < 0) {
+                $('#txtVoucherNo').siblings('span.voucherNoVal').text("Please Enter number Properly in Voucher Number.");
+                $('#txtVoucherNo').focus();
+                result = false;
+            }
+
+            if ($('#ddlVoucherType').val() == null) {
+                $('#ddlVoucherType').siblings('span.voucherType').text("Please Select VoucherType.");
+                $('#ddlVoucherType').focus();
+                result = false;
+            }
+
+            if ($('#date_range').val() == "") {
+                $('#date_range').siblings('span.voucherDate').text("Please Select Voucher Date.");
+                $('#date_range').focus();
+                result = false;
+            }
+            var tableRows = $("#Ledger_table tbody tr").length;
+
+            if (tableRows <= 1) {
+                alert('Please enter at least 1 item for Details.');
+                result = false;
+            }
+            return result;
+        }
+
+        $('#txtVoucherNo').change(function () {
+            if ($('#txtVoucherNo').val() != "" && !isNaN($('#txtVoucherNo').val())) {
+                $('#txtVoucherNo').siblings('span.voucherNoVal').text("");
+            }
+        });
+
+        $('#ddlVoucherType').change(function () {
+            if ($('#ddlVoucherType').val() != null) {
+                $('#ddlVoucherType').siblings('span.voucherType').text("");
+            }
+        });
+
+
+        $('#date_range').change(function () {
+            if ($('#date_range').val() != "") {
+                $('#date_range').siblings('span.voucherDate').text("");
+            }
+        });
+
+        $('#Ledger_table').on('click', '.remove', function () {
+            $(this).parents('tr').remove();
+        });
+
         $('#date_range').daterangepicker({
             locale: {
                 format: 'DD-MMM-YYYY'

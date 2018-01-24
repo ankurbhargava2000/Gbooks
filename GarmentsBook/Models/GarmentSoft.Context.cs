@@ -60,6 +60,7 @@ namespace GarmentSoft.Models
         public virtual DbSet<Vendor> Vendors { get; set; }
         public virtual DbSet<VendorType> VendorTypes { get; set; }
         public virtual DbSet<acc_transactions_details> acc_transactions_details { get; set; }
+        public virtual DbSet<VoucherType> VoucherTypes { get; set; }
     
         public virtual ObjectResult<USP_getStockAvailableQTY_Result> USP_getStockAvailableQTY(Nullable<int> product_id, Nullable<int> companyId)
         {

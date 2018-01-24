@@ -182,9 +182,16 @@
                     },
                     customize: function (win) {
                         $(win.document.body).find('table').addClass('display').css('font-size', '10px');
-                        $(win.document.body).find('tr:nth-child(odd) td').each(function (index) {
+                        $(win.document.body).find('td').each(function (index) {
+                            $(this).css('text-align', 'center');
                             $(this).css('background-color', '#D0D0D0');
+
                         });
+
+                        $(win.document.body).find('th').each(function (index) {
+                            $(this).css('text-align', 'center');
+                        });
+
                         $(win.document.body).find('h1').css('display', 'none');
                     }
                 }

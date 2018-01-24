@@ -87,6 +87,14 @@
                     </span>
                 </a>
             </li>
+            <li class="nav-item start @Html.IsSelected(controller: "Invoices")">
+                <a href="@Url.Action("Index", "Journal")" class="nav-link nav-toggle">
+                    <i class="fa fa-list fa-fw"></i>
+                    <span class="title">
+                        Journal Entry
+                    </span>
+                </a>
+            </li>
             @{
                 if (Session["RoleName"] != null && Session["RoleName"].ToString().Equals("Administrator"))
                 {

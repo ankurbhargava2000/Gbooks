@@ -2,65 +2,97 @@
 
 @{
     ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="portlet light">
+    <div class="portlet-title">
+        <div class="caption font-red-sunglo">
+            <i class="icon-speech font-red-sunglo"></i>
+            <span class="caption-subject bold uppercase">Journal Entry Details</span>
+        </div>
+        <div class="actions">
+            <a href="@Url.Action("Index")" class="btn btn-circle btn-default">
+                <i class="fa fa-arrow-left"></i> Back
+            </a>
+            <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:;" data-original-title="" title="">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <h4>Journal Entry# @Model.id</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                Voucher Number
+            </dt>
 
-<h2>Details</h2>
+            <dd>
+                @Html.DisplayFor(model => model.voucher_no)
+            </dd>
+            <dt>
+                Voucher Type
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.VoucherType.VoucherName)
+            </dd>
+            <dt>
+                Voucher Date
+            </dt>
+            <dd>
 
-<div>
-    <h4>acc_transactions</h4>
-	<hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.voucher_type)
-        </dt>
+                @Model.voucher_date.ToString("dd/MM/yyyy")
+            </dd>
+            <dt>
+                Description
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.description)
+            </dd>
+        </dl>
+    </div>
+    <p>
+        Journal Details
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                Ledger Name
+            </th>
+            <th>
+                Trans.Type
+            </th>
+            <th>
+                Amount
+            </th>
+            <th>
+                Description
+            </th>
+        </tr>
+        @if (Model != null && Model.acc_transactions_details != null)
+        {
+            
+            foreach (var item in Model.acc_transactions_details)
+            {
+                
+                <tr >
+                    <td>
+                        <label class="Ledger">@item.acc_ledger.name</label>
 
-        <dd>
-            @Html.DisplayFor(model => model.voucher_type)
-        </dd>
+                    </td>
+                    <td>
+                        <label class="TransType">@item.trans_type</label>
+                    </td>
+                    <td>
+                        <label class="Amount">@item.amount</label>
+                    </td>
+                    <td>
+                        <label class="Description">@item.description</label>
+                    </td>
+                    
+                </tr>
+            }
+        }
+        
+    </table>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.voucher_no)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.voucher_no)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.voucher_date)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.voucher_date)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Company.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Company.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FinancialYear.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FinancialYear.Name)
-        </dd>
-
-    </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
