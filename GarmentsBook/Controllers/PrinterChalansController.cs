@@ -29,8 +29,8 @@ namespace GarmentSoft.Controllers
 
             int pageSize = 3;
             int pageNumber = (page ?? 1);
-            return View(printerChalans.ToPagedList(pageNumber, pageSize));
-            //return View(printerChalans);
+            //return View(printerChalans.ToPagedList(pageNumber, pageSize));
+            return View(printerChalans.ToList());
         }
 
         // GET: PrinterChalans/Details/5
