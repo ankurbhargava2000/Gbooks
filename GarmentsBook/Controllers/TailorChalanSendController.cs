@@ -28,7 +28,8 @@ namespace GarmentSoft.Controllers
 
             int pageSize = 10;
             int pageNumber = (page ?? 1);
-            return View(tailorChalans.ToPagedList(pageNumber, pageSize));
+            return View(tailorChalans.ToList());
+            //return View(tailorChalans.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: TailorChalan/Details/5
