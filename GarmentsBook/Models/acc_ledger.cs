@@ -27,8 +27,8 @@ namespace GarmentSoft.Models
         public int group_id { get; set; }
     
         public virtual acc_group acc_group { get; set; }
-        public virtual Company Company { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<acc_transactions_details> acc_transactions_details { get; set; }
+        public virtual Company Company { get; set; }
     }
 }

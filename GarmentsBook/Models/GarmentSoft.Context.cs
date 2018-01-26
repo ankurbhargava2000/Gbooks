@@ -31,6 +31,7 @@ namespace GarmentSoft.Models
         public virtual DbSet<acc_group> acc_group { get; set; }
         public virtual DbSet<acc_ledger> acc_ledger { get; set; }
         public virtual DbSet<acc_transactions> acc_transactions { get; set; }
+        public virtual DbSet<acc_transactions_details> acc_transactions_details { get; set; }
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
@@ -59,7 +60,6 @@ namespace GarmentSoft.Models
         public virtual DbSet<UserCompany> UserCompanies { get; set; }
         public virtual DbSet<Vendor> Vendors { get; set; }
         public virtual DbSet<VendorType> VendorTypes { get; set; }
-        public virtual DbSet<acc_transactions_details> acc_transactions_details { get; set; }
         public virtual DbSet<VoucherType> VoucherTypes { get; set; }
     
         public virtual ObjectResult<USP_getStockAvailableQTY_Result> USP_getStockAvailableQTY(Nullable<int> product_id, Nullable<int> companyId)
