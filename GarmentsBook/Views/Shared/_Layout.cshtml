@@ -146,9 +146,13 @@
 
             $('.jTable').DataTable({
                 "scrollX": false,
+                "bPaginate": true,
                 dom: 'Bfrtip',
+                "lengthMenu": [10, 25, 50, 75, 100],
                 buttons: [
+                   
                 {
+                    
                     extend: 'pdfHtml5',
                     title: '',
                     init: function(dt, node, config) {
