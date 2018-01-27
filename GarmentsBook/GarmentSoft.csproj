@@ -449,6 +449,12 @@
     <Content Include="Content\font-awesome\fonts\fontawesome-webfont.woff" />
     <Content Include="Content\font-awesome\fonts\FontAwesome.otf" />
     <Content Include="assets\global\plugins\date_range_picker\daterangepicker.scss" />
+    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\GarmentSoft.csdl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\GarmentSoft.msl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\GarmentSoft.ssdl" />
+    <Content Include="obj\Debug\GarmentSoft.csprojResolveAssemblyReference.cache" />
+    <Content Include="obj\Debug\SampleWebApp.csprojResolveAssemblyReference.cache" />
     <EntityDeploy Include="Models\GarmentSoft.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>GarmentSoft.Designer.cs</LastGenOutput>
@@ -456,12 +462,6 @@
     <Content Include="Models\GarmentSoft.edmx.diagram">
       <DependentUpon>GarmentSoft.edmx</DependentUpon>
     </Content>
-    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
-    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\GarmentSoft.csdl" />
-    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\GarmentSoft.msl" />
-    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\GarmentSoft.ssdl" />
-    <Content Include="obj\Debug\GarmentSoft.csprojResolveAssemblyReference.cache" />
-    <Content Include="obj\Debug\SampleWebApp.csprojResolveAssemblyReference.cache" />
     <None Include="Properties\PublishProfiles\Local.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

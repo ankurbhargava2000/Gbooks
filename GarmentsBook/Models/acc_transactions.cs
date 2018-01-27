@@ -28,10 +28,10 @@ namespace GarmentSoft.Models
         public Nullable<int> Company_Id { get; set; }
         public Nullable<int> FinancialYear_Id { get; set; }
     
-        public virtual Company Company { get; set; }
-        public virtual FinancialYear FinancialYear { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<acc_transactions_details> acc_transactions_details { get; set; }
+        public virtual Company Company { get; set; }
+        public virtual FinancialYear FinancialYear { get; set; }
         public virtual VoucherType VoucherType { get; set; }
     }
 }

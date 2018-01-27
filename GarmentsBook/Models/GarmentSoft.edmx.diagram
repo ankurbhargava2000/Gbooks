@@ -4,45 +4,50 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f7a6fbd0b09247498e44f13dd7ee2bf9" Name="Diagram1">
+      <Diagram DiagramId="9b57877f74c94725b12c2b744458a066" Name="Diagram1">
         <EntityTypeShape EntityType="GarmentSoft.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="GarmentSoft.acc_group" Width="1.5" PointX="8.25" PointY="30.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="GarmentSoft.acc_ledger" Width="1.5" PointX="10.5" PointY="32.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentSoft.acc_group" Width="1.5" PointX="8.25" PointY="30.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentSoft.acc_ledger" Width="1.5" PointX="10.5" PointY="33" IsExpanded="true" />
         <EntityTypeShape EntityType="GarmentSoft.acc_transactions" Width="1.5" PointX="3" PointY="33" IsExpanded="true" />
-        <EntityTypeShape EntityType="GarmentSoft.AspNetRole" Width="1.5" PointX="3.75" PointY="24.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="GarmentSoft.AspNetUserClaim" Width="1.5" PointX="8.25" PointY="21.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="GarmentSoft.AspNetUserLogin" Width="1.5" PointX="8.25" PointY="18.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="GarmentSoft.AspNetUser" Width="1.5" PointX="6" PointY="22.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="GarmentSoft.Company" Width="1.5" PointX="6" PointY="31.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="GarmentSoft.Customer" Width="1.5" PointX="8.25" PointY="34.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="GarmentSoft.FinancialYear" Width="1.5" PointX="0.75" PointY="32.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="GarmentSoft.InvoiceDetail" Width="1.5" PointX="22.5" PointY="28.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="GarmentSoft.InvoiceMaster" Width="1.5" PointX="13.5" PointY="32.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="GarmentSoft.MeasuringUnit" Width="1.5" PointX="12" PointY="24.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="GarmentSoft.PrinterChalanDetail" Width="1.5" PointX="19.5" PointY="37.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="GarmentSoft.PrinterChalan" Width="1.5" PointX="11.25" PointY="36.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="GarmentSoft.PrintJobWorkReceivedDetail" Width="1.5" PointX="19.5" PointY="28" IsExpanded="true" />
-        <EntityTypeShape EntityType="GarmentSoft.PrintJobWorkReceived" Width="1.5" PointX="11.25" PointY="27.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="GarmentSoft.Product" Width="1.5" PointX="14.25" PointY="27" IsExpanded="true" />
-        <EntityTypeShape EntityType="GarmentSoft.ProductType" Width="1.5" PointX="12" PointY="20.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="GarmentSoft.PurchaseDetail" Width="1.5" PointX="18.5" PointY="33.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="GarmentSoft.PurchaseOrder" Width="1.5" PointX="14.25" PointY="37.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="GarmentSoft.TailorChalanDetail" Width="1.5" PointX="19.5" PointY="24.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="GarmentSoft.TailorChalan" Width="1.5" PointX="8.25" PointY="25.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="GarmentSoft.TailorChalanSendDetail" Width="1.5" PointX="16.5" PointY="38" IsExpanded="true" />
-        <EntityTypeShape EntityType="GarmentSoft.TailorChalanSend" Width="1.5" PointX="8.25" PointY="39.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="GarmentSoft.TailorMaterialDetail" Width="1.5" PointX="21.75" PointY="24.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="GarmentSoft.Tenant" Width="1.5" PointX="3.75" PointY="28.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="GarmentSoft.Transaction" Width="1.5" PointX="21.5" PointY="32.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="GarmentSoft.UserCompany" Width="1.5" PointX="16.25" PointY="33.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="GarmentSoft.Vendor" Width="1.5" PointX="17.25" PointY="26.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="GarmentSoft.VendorType" Width="1.5" PointX="15" PointY="23.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentSoft.acc_transactions_details" Width="1.5" PointX="5.25" PointY="27.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentSoft.AspNetRole" Width="1.5" PointX="3.75" PointY="22.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentSoft.AspNetUserClaim" Width="1.5" PointX="8.25" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentSoft.AspNetUserLogin" Width="1.5" PointX="8.25" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentSoft.AspNetUser" Width="1.5" PointX="6" PointY="20.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentSoft.Company" Width="1.5" PointX="6" PointY="31.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentSoft.Customer" Width="1.5" PointX="8.25" PointY="34.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentSoft.FinancialYear" Width="1.5" PointX="0.75" PointY="32.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentSoft.InvoiceDetail" Width="1.5" PointX="22.5" PointY="28.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentSoft.InvoiceMaster" Width="1.5" PointX="13.5" PointY="32.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentSoft.MeasuringUnit" Width="1.5" PointX="12" PointY="24.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentSoft.PrinterChalanDetail" Width="1.5" PointX="19.5" PointY="37.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentSoft.PrinterChalan" Width="1.5" PointX="11.25" PointY="36.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentSoft.PrintJobWorkReceivedDetail" Width="1.5" PointX="19.5" PointY="28.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentSoft.PrintJobWorkReceived" Width="1.5" PointX="11.25" PointY="27.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentSoft.Product" Width="1.5" PointX="14.25" PointY="27.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentSoft.ProductType" Width="1.5" PointX="12" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentSoft.PurchaseDetail" Width="1.5" PointX="18.5" PointY="33.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentSoft.PurchaseOrder" Width="1.5" PointX="14.25" PointY="37.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentSoft.TailorChalanDetail" Width="1.5" PointX="19.5" PointY="24.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentSoft.TailorChalan" Width="1.5" PointX="8.25" PointY="25.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentSoft.TailorChalanSendDetail" Width="1.5" PointX="16.5" PointY="38.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentSoft.TailorChalanSend" Width="1.5" PointX="8.25" PointY="39.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentSoft.TailorMaterialDetail" Width="1.5" PointX="21.75" PointY="24.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentSoft.Tenant" Width="1.5" PointX="3.75" PointY="36.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentSoft.Transaction" Width="1.5" PointX="21.5" PointY="32.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentSoft.UserCompany" Width="1.5" PointX="16.25" PointY="33.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentSoft.Vendor" Width="1.5" PointX="17.25" PointY="27.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentSoft.VendorType" Width="1.5" PointX="15" PointY="23.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GarmentSoft.VoucherType" Width="1.5" PointX="0.75" PointY="29.75" IsExpanded="true" />
         <AssociationConnector Association="GarmentSoft.FK_dbo_acc_group_dbo_acc_group_base_group_id" ManuallyRouted="false" />
         <AssociationConnector Association="GarmentSoft.FK_dbo_acc_group_dbo_Companies_Company_Id" ManuallyRouted="false" />
         <AssociationConnector Association="GarmentSoft.FK_dbo_acc_ledger_dbo_acc_group_group_id" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentSoft.FK_acc_transactions_details_acc_ledger" ManuallyRouted="false" />
         <AssociationConnector Association="GarmentSoft.FK_dbo_acc_ledger_dbo_Companies_Company_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentSoft.FK_acc_transactions_details_acc_transactions" ManuallyRouted="false" />
         <AssociationConnector Association="GarmentSoft.FK_dbo_acc_transactions_dbo_Companies_Company_Id" ManuallyRouted="false" />
         <AssociationConnector Association="GarmentSoft.FK_dbo_acc_transactions_dbo_FinancialYears_FinancialYear_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="GarmentSoft.FK_dbo_acc_transactions_dbo_VoucherType" ManuallyRouted="false" />
         <AssociationConnector Association="GarmentSoft.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="GarmentSoft.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="GarmentSoft.FK_dbo_AspNetUsers_dbo_Tenants_TenantId" ManuallyRouted="false" />
@@ -99,11 +104,6 @@
         <AssociationConnector Association="GarmentSoft.FK_dbo_Transactions_dbo_Vendors_vendor_id" ManuallyRouted="false" />
         <AssociationConnector Association="GarmentSoft.FK_dbo_Vendors_dbo_VendorTypes_VendorTypeId" ManuallyRouted="false" />
         <AssociationConnector Association="GarmentSoft.AspNetUserRoles" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="GarmentSoft.acc_transactions_details" Width="1.5" PointX="16.75" PointY="41.125" />
-        <AssociationConnector Association="GarmentSoft.FK_acc_transactions_details_acc_ledger" />
-        <AssociationConnector Association="GarmentSoft.FK_acc_transactions_details_acc_transactions" />
-        <EntityTypeShape EntityType="GarmentSoft.VoucherType" Width="1.5" PointX="3.375" PointY="0.75" />
-        <AssociationConnector Association="GarmentSoft.FK_dbo_acc_transactions_dbo_VoucherType" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

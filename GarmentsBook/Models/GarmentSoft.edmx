@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="GarmentSoft.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="GarmentSoft.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -1618,7 +1618,8 @@
             <End Role="Vendors" EntitySet="Vendors" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="GarmentSoft" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1658,8 +1659,8 @@
           <Property Name="Company_Id" Type="Int32" Nullable="false" />
           <Property Name="group_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="acc_group" Relationship="Self.FK_dbo_acc_ledger_dbo_acc_group_group_id" FromRole="acc_ledger" ToRole="acc_group" />
+          <NavigationProperty Name="acc_transactions_details" Relationship="Self.FK_acc_transactions_details_acc_ledger" FromRole="acc_ledger" ToRole="acc_transactions_details" />
           <NavigationProperty Name="Company" Relationship="Self.FK_dbo_acc_ledger_dbo_Companies_Company_Id" FromRole="acc_ledger" ToRole="Companies" />
-          <NavigationProperty Name="acc_transactions_details" Relationship="GarmentSoft.FK_acc_transactions_details_acc_ledger" FromRole="acc_ledger" ToRole="acc_transactions_details" />
         </EntityType>
         <EntityType Name="acc_transactions">
           <Key>
@@ -1672,10 +1673,23 @@
           <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Company_Id" Type="Int32" />
           <Property Name="FinancialYear_Id" Type="Int32" />
+          <NavigationProperty Name="acc_transactions_details" Relationship="Self.FK_acc_transactions_details_acc_transactions" FromRole="acc_transactions" ToRole="acc_transactions_details" />
           <NavigationProperty Name="Company" Relationship="Self.FK_dbo_acc_transactions_dbo_Companies_Company_Id" FromRole="acc_transactions" ToRole="Companies" />
           <NavigationProperty Name="FinancialYear" Relationship="Self.FK_dbo_acc_transactions_dbo_FinancialYears_FinancialYear_Id" FromRole="acc_transactions" ToRole="FinancialYears" />
-          <NavigationProperty Name="acc_transactions_details" Relationship="GarmentSoft.FK_acc_transactions_details_acc_transactions" FromRole="acc_transactions" ToRole="acc_transactions_details" />
-          <NavigationProperty Name="VoucherType" Relationship="GarmentSoft.FK_dbo_acc_transactions_dbo_VoucherType" FromRole="acc_transactions" ToRole="VoucherType" />
+          <NavigationProperty Name="VoucherType" Relationship="Self.FK_dbo_acc_transactions_dbo_VoucherType" FromRole="acc_transactions" ToRole="VoucherType" />
+        </EntityType>
+        <EntityType Name="acc_transactions_details">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="voucher_id" Type="Int32" Nullable="false" />
+          <Property Name="trans_type" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="amount" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="acc_ledger_id" Type="Int32" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="acc_ledger" Relationship="Self.FK_acc_transactions_details_acc_ledger" FromRole="acc_transactions_details" ToRole="acc_ledger" />
+          <NavigationProperty Name="acc_transactions" Relationship="Self.FK_acc_transactions_details_acc_transactions" FromRole="acc_transactions_details" ToRole="acc_transactions" />
         </EntityType>
         <EntityType Name="AspNetRole">
           <Key>
@@ -2162,6 +2176,14 @@
           <Property Name="IsActive" Type="Boolean" />
           <NavigationProperty Name="Vendors" Relationship="Self.FK_dbo_Vendors_dbo_VendorTypes_VendorTypeId" FromRole="VendorTypes" ToRole="Vendors" />
         </EntityType>
+        <EntityType Name="VoucherType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VoucherName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="acc_transactions" Relationship="Self.FK_dbo_acc_transactions_dbo_VoucherType" FromRole="VoucherType" ToRole="acc_transactions" />
+        </EntityType>
         <Association Name="FK_dbo_acc_group_dbo_acc_group_base_group_id">
           <End Role="acc_group" Type="Self.acc_group" Multiplicity="0..1" />
           <End Role="acc_group1" Type="Self.acc_group" Multiplicity="*" />
@@ -2200,6 +2222,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_acc_transactions_details_acc_ledger">
+          <End Role="acc_ledger" Type="Self.acc_ledger" Multiplicity="1" />
+          <End Role="acc_transactions_details" Type="Self.acc_transactions_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="acc_ledger">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="acc_transactions_details">
+              <PropertyRef Name="acc_ledger_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_dbo_acc_ledger_dbo_Companies_Company_Id">
           <End Role="Companies" Type="Self.Company" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -2211,6 +2245,20 @@
             </Principal>
             <Dependent Role="acc_ledger">
               <PropertyRef Name="Company_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_acc_transactions_details_acc_transactions">
+          <End Role="acc_transactions" Type="Self.acc_transactions" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="acc_transactions_details" Type="Self.acc_transactions_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="acc_transactions">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="acc_transactions_details">
+              <PropertyRef Name="voucher_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2235,6 +2283,18 @@
             </Principal>
             <Dependent Role="acc_transactions">
               <PropertyRef Name="FinancialYear_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_acc_transactions_dbo_VoucherType">
+          <End Role="VoucherType" Type="Self.VoucherType" Multiplicity="1" />
+          <End Role="acc_transactions" Type="Self.acc_transactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VoucherType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="acc_transactions">
+              <PropertyRef Name="voucher_type" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2949,6 +3009,7 @@
           <EntitySet Name="acc_group" EntityType="Self.acc_group" />
           <EntitySet Name="acc_ledger" EntityType="Self.acc_ledger" />
           <EntitySet Name="acc_transactions" EntityType="Self.acc_transactions" />
+          <EntitySet Name="acc_transactions_details" EntityType="Self.acc_transactions_details" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
@@ -2977,6 +3038,7 @@
           <EntitySet Name="UserCompanies" EntityType="Self.UserCompany" />
           <EntitySet Name="Vendors" EntityType="Self.Vendor" />
           <EntitySet Name="VendorTypes" EntityType="Self.VendorType" />
+          <EntitySet Name="VoucherTypes" EntityType="Self.VoucherType" />
           <AssociationSet Name="FK_dbo_acc_group_dbo_acc_group_base_group_id" Association="Self.FK_dbo_acc_group_dbo_acc_group_base_group_id">
             <End Role="acc_group" EntitySet="acc_group" />
             <End Role="acc_group1" EntitySet="acc_group" />
@@ -2989,9 +3051,17 @@
             <End Role="acc_group" EntitySet="acc_group" />
             <End Role="acc_ledger" EntitySet="acc_ledger" />
           </AssociationSet>
+          <AssociationSet Name="FK_acc_transactions_details_acc_ledger" Association="Self.FK_acc_transactions_details_acc_ledger">
+            <End Role="acc_ledger" EntitySet="acc_ledger" />
+            <End Role="acc_transactions_details" EntitySet="acc_transactions_details" />
+          </AssociationSet>
           <AssociationSet Name="FK_dbo_acc_ledger_dbo_Companies_Company_Id" Association="Self.FK_dbo_acc_ledger_dbo_Companies_Company_Id">
             <End Role="Companies" EntitySet="Companies" />
             <End Role="acc_ledger" EntitySet="acc_ledger" />
+          </AssociationSet>
+          <AssociationSet Name="FK_acc_transactions_details_acc_transactions" Association="Self.FK_acc_transactions_details_acc_transactions">
+            <End Role="acc_transactions" EntitySet="acc_transactions" />
+            <End Role="acc_transactions_details" EntitySet="acc_transactions_details" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_acc_transactions_dbo_Companies_Company_Id" Association="Self.FK_dbo_acc_transactions_dbo_Companies_Company_Id">
             <End Role="Companies" EntitySet="Companies" />
@@ -2999,6 +3069,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_dbo_acc_transactions_dbo_FinancialYears_FinancialYear_Id" Association="Self.FK_dbo_acc_transactions_dbo_FinancialYears_FinancialYear_Id">
             <End Role="FinancialYears" EntitySet="FinancialYears" />
+            <End Role="acc_transactions" EntitySet="acc_transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_acc_transactions_dbo_VoucherType" Association="Self.FK_dbo_acc_transactions_dbo_VoucherType">
+            <End Role="VoucherType" EntitySet="VoucherTypes" />
             <End Role="acc_transactions" EntitySet="acc_transactions" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
@@ -3254,20 +3328,6 @@
             <Parameter Name="StartDate" Mode="In" Type="DateTime" />
             <Parameter Name="EndDate" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <EntitySet Name="acc_transactions_details" EntityType="GarmentSoft.acc_transactions_details" />
-          <AssociationSet Name="FK_acc_transactions_details_acc_ledger" Association="GarmentSoft.FK_acc_transactions_details_acc_ledger">
-            <End Role="acc_ledger" EntitySet="acc_ledger" />
-            <End Role="acc_transactions_details" EntitySet="acc_transactions_details" />
-          </AssociationSet>
-          <AssociationSet Name="FK_acc_transactions_details_acc_transactions" Association="GarmentSoft.FK_acc_transactions_details_acc_transactions">
-            <End Role="acc_transactions" EntitySet="acc_transactions" />
-            <End Role="acc_transactions_details" EntitySet="acc_transactions_details" />
-          </AssociationSet>
-          <EntitySet Name="VoucherTypes" EntityType="GarmentSoft.VoucherType" />
-          <AssociationSet Name="FK_dbo_acc_transactions_dbo_VoucherType" Association="GarmentSoft.FK_dbo_acc_transactions_dbo_VoucherType">
-            <End Role="VoucherType" EntitySet="VoucherTypes" />
-            <End Role="acc_transactions" EntitySet="acc_transactions" />
-          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="USP_getStockAvailableQTY_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
@@ -3318,65 +3378,6 @@
           <Property Type="Decimal" Name="IssuedQty" Nullable="true" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="ReceivedQty" Nullable="true" Precision="18" Scale="2" />
         </ComplexType>
-        <EntityType Name="acc_transactions_details">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="voucher_id" Type="Int32" Nullable="false" />
-          <Property Name="trans_type" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
-          <Property Name="amount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="acc_ledger_id" Type="Int32" Nullable="false" />
-          <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="acc_ledger" Relationship="GarmentSoft.FK_acc_transactions_details_acc_ledger" FromRole="acc_transactions_details" ToRole="acc_ledger" />
-          <NavigationProperty Name="acc_transactions" Relationship="GarmentSoft.FK_acc_transactions_details_acc_transactions" FromRole="acc_transactions_details" ToRole="acc_transactions" />
-        </EntityType>
-        <Association Name="FK_acc_transactions_details_acc_ledger">
-          <End Type="GarmentSoft.acc_ledger" Role="acc_ledger" Multiplicity="1" />
-          <End Type="GarmentSoft.acc_transactions_details" Role="acc_transactions_details" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="acc_ledger">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="acc_transactions_details">
-              <PropertyRef Name="acc_ledger_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_acc_transactions_details_acc_transactions">
-          <End Type="GarmentSoft.acc_transactions" Role="acc_transactions" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="GarmentSoft.acc_transactions_details" Role="acc_transactions_details" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="acc_transactions">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="acc_transactions_details">
-              <PropertyRef Name="voucher_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="VoucherType">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="VoucherName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="acc_transactions" Relationship="GarmentSoft.FK_dbo_acc_transactions_dbo_VoucherType" FromRole="VoucherType" ToRole="acc_transactions" />
-        </EntityType>
-        <Association Name="FK_dbo_acc_transactions_dbo_VoucherType">
-          <End Type="GarmentSoft.VoucherType" Role="VoucherType" Multiplicity="1" />
-          <End Type="GarmentSoft.acc_transactions" Role="acc_transactions" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="VoucherType">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="acc_transactions">
-              <PropertyRef Name="voucher_type" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3427,6 +3428,18 @@
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="Company_Id" ColumnName="Company_Id" />
                 <ScalarProperty Name="FinancialYear_Id" ColumnName="FinancialYear_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="acc_transactions_details">
+            <EntityTypeMapping TypeName="GarmentSoft.acc_transactions_details">
+              <MappingFragment StoreEntitySet="acc_transactions_details">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="voucher_id" ColumnName="voucher_id" />
+                <ScalarProperty Name="trans_type" ColumnName="trans_type" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="acc_ledger_id" ColumnName="acc_ledger_id" />
+                <ScalarProperty Name="description" ColumnName="description" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3825,6 +3838,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="VoucherTypes">
+            <EntityTypeMapping TypeName="GarmentSoft.VoucherType">
+              <MappingFragment StoreEntitySet="VoucherType">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="VoucherName" ColumnName="VoucherName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <AssociationSetMapping Name="AspNetUserRoles" TypeName="GarmentSoft.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
             <EndProperty Name="AspNetRoles">
               <ScalarProperty Name="Id" ColumnName="RoleId" />
@@ -3902,26 +3923,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <EntitySetMapping Name="acc_transactions_details">
-            <EntityTypeMapping TypeName="GarmentSoft.acc_transactions_details">
-              <MappingFragment StoreEntitySet="acc_transactions_details">
-                <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="acc_ledger_id" ColumnName="acc_ledger_id" />
-                <ScalarProperty Name="amount" ColumnName="amount" />
-                <ScalarProperty Name="trans_type" ColumnName="trans_type" />
-                <ScalarProperty Name="voucher_id" ColumnName="voucher_id" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="VoucherTypes">
-            <EntityTypeMapping TypeName="GarmentSoft.VoucherType">
-              <MappingFragment StoreEntitySet="VoucherType">
-                <ScalarProperty Name="VoucherName" ColumnName="VoucherName" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
