@@ -347,31 +347,31 @@
                     if ($('#txtVoucherNo').val() == "") {
                         $('#txtVoucherNo').siblings('span.voucherNoVal').text("Please Enter Voucher Number.");
                         $('#txtVoucherNo').focus();
-                        result = false;
+                        return false;
                     }
                     
                     if (isNaN($('#txtVoucherNo').val()) ) {
                         $('#txtVoucherNo').siblings('span.voucherNoVal').text("Please Enter number Properly in Voucher Number.");
                         $('#txtVoucherNo').focus();
-                        result = false;
+                        return false;
                     }
                     
                     if (parseInt($('#txtVoucherNo').val()) < 0) {
                         $('.voucherNoVal').text("Please Enter number Properly in Voucher Number.");
                         $('#txtVoucherNo').focus();
-                        result = false;
+                        return false;
                     }
                     
                     if ($('#ddlVoucherType').val() == null) {
                         $('#ddlVoucherType').siblings('span.voucherType').text("Please Select VoucherType.");
                         $('#ddlVoucherType').focus();
-                        result = false;
+                        return false;
                     }
 
                     if ($('#date_range').val() == "") {
                         $('#date_range').siblings('span.voucherDate').text("Please Select Voucher Date.");
                         $('#date_range').focus();
-                        result = false;
+                        return false;
                     }
                     var tableRows = $("#Ledger_table tbody tr").length;
 
@@ -379,7 +379,39 @@
                         alert('Please enter at least 1 item for Details.');
                         result = false;
                     }
-                    return result;
+                    return chkEntry();
+                }
+
+                function chkEntry()
+                {
+                    var crAmt = 0;
+                    var DrAmt = 0;
+                    var CrCnt = 0;
+                    var DrCnt = 0
+
+                    $('#Ledger_table tbody tr').each(function (index, ele) {
+                        var AMt = $('.Amount', this).text()
+                        var transtype = $('.TransType', this).text();
+                        if (transtype == 'Cr') {
+                            CrCnt = CrCnt + 1;
+                            crAmt = crAmt + parseInt(AMt);
+                        }
+                        else if (transtype == 'Dr') {
+                            DrCnt = DrCnt + 1 ;
+                            DrAmt = DrAmt + parseInt(AMt);
+                        }
+                    });
+  
+                    if(CrCnt == 0 || DrCnt == 0)
+                    {
+                        alert('Atleast on Credit and Debit Entry Required');
+                        return false;
+                    }
+                    if (crAmt != DrAmt) {
+                        alert('Credit and Debit Amount not Match');
+                        return false;
+                    }
+                    return true;
                 }
 
                 $('#txtVoucherNo').change(function () {

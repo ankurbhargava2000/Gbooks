@@ -49,7 +49,7 @@
                             @Html.DisplayFor(modelItem => item.VoucherType.VoucherName)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.voucher_date)
+                            @item.voucher_date.ToString("dd/MM/yyyy")
                         </td>
                         <td class="hidecol">
                             @Html.ActionLink("Edit", "Edit", new { id = item.id }, new { @class = "btn btn-warning btn-xs" })

@@ -287,7 +287,8 @@
 
             $('#purchaseOrderItems').on('click', '.editItem', function(){
                 //show modelpopup with edit item
-                $('#product').val($('.productId', $(this).parents('tr')).val());
+                $('#product').select2('val', $('.productId', $(this).parents('tr')).val());
+                //$('#product').val($('.productId', $(this).parents('tr')).val());
                 $('#quantity').val($('.productQuantity', $(this).parents('tr')).text());
                 $('#fold').val($('.productFold', $(this).parents('tr')).text());
                 $('#rate').val($('.productRate', $(this).parents('tr')).text());

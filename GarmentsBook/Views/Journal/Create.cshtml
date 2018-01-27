@@ -335,36 +335,43 @@
                     }
                 });
 
+                
                 function validateMainPage() {
                     var result = true;
                     if ($('#txtVoucherNo').val() == "") {
                         $('#txtVoucherNo').siblings('span.voucherNoVal').text("Please Enter Voucher Number.");
                         $('#txtVoucherNo').focus();
-                        result = false;
+                        return false;
                     }
 
-                    if (isNaN($('#txtVoucherNo').val()) && parseInt($('#txtVoucherNo').val()) < 0) {
+                    if (isNaN($('#txtVoucherNo').val())) {
                         $('#txtVoucherNo').siblings('span.voucherNoVal').text("Please Enter number Properly in Voucher Number.");
                         $('#txtVoucherNo').focus();
-                        result = false;
+                        return false;
+                    }
+
+                    if (parseInt($('#txtVoucherNo').val()) < 0) {
+                        $('.voucherNoVal').text("Please Enter number Properly in Voucher Number.");
+                        $('#txtVoucherNo').focus();
+                        return false;
                     }
 
                     if ($('#ddlVoucherType').val() == null) {
                         $('#ddlVoucherType').siblings('span.voucherType').text("Please Select VoucherType.");
                         $('#ddlVoucherType').focus();
-                        result = false;
+                        return false;
                     }
 
                     if ($('#date_range').val() == "") {
                         $('#date_range').siblings('span.voucherDate').text("Please Select Voucher Date.");
                         $('#date_range').focus();
-                        result = false;
+                        return false;
                     }
                     var tableRows = $("#Ledger_table tbody tr").length;
 
                     if (tableRows <= 1) {
                         alert('Please enter at least 1 item for Details.');
-                        result = false;
+                        return false;
                     }
                     return chkEntry();
                 }
@@ -379,7 +386,6 @@
                     $('#Ledger_table tbody tr').each(function (index, ele) {
                         var AMt = $('.Amount', this).text()
                         var transtype = $('.TransType', this).text();
-                        debugger
                         if (transtype == 'Cr') {
                             CrCnt = CrCnt + 1;
                             crAmt = crAmt + parseInt(AMt);
@@ -389,8 +395,7 @@
                             DrAmt = DrAmt + parseInt(AMt);
                         }
                     });
-                    alert(CrCnt);
-                    alert(DrCnt);
+  
                     if(CrCnt == 0 || DrCnt == 0)
                     {
                         alert('Atleast on Credit and Debit Entry Required');
