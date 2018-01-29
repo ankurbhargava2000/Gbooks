@@ -307,7 +307,7 @@
                         var transtype = $('.TransType', this).text();
                         var ddlTransTypeVal = $('#ddlTransType').val();
 
-                        if ((LedgerId == ddlLedgerVal) && (transtype == ddlTransTypeVal)) {
+                        if ((LedgerId == ddlLedgerVal)) {
                             $('.LedgerVal').text("Ledger is already added.");
                             result = false;
                             return false;
@@ -398,7 +398,7 @@
   
                     if(CrCnt == 0 || DrCnt == 0)
                     {
-                        alert('Atleast on Credit and Debit Entry Required');
+                        alert('Atleast One Credit and Debit Entry Required');
                         return false;
                     }
                     if (crAmt != DrAmt) {
