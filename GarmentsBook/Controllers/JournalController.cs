@@ -202,11 +202,17 @@ namespace GarmentSoft.Controllers
         }
 
         // POST: /Journal/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+ 
+        
         public ActionResult DeleteConfirmed(int id)
         {
             acc_transactions acc_transactions = db.acc_transactions.Find(id);
+
+            if (acc_transactions == null)
+            {
+                return HttpNotFound();
+            }
+
             db.acc_transactions.Remove(acc_transactions);
             db.SaveChanges();
             return RedirectToAction("Index");
