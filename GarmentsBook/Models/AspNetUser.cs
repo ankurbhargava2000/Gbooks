@@ -6,12 +6,15 @@
 //     Manual changes to this file will be overwritten if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+ 
 namespace GarmentSoft.Models
 {
     using System;
     using System.Collections.Generic;
     
+    [MetadataType(typeof(AspNetUserMetaData))]
     public partial class AspNetUser
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -42,6 +45,11 @@ namespace GarmentSoft.Models
         public bool LockoutEnabled { get; set; }
         public int AccessFailedCount { get; set; }
         public string UserName { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
+        public string Country { get; set; }
+        public string PIN { get; set; }
+        public string Address { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetUserClaim> AspNetUserClaims { get; set; }
@@ -64,5 +72,32 @@ namespace GarmentSoft.Models
         public virtual ICollection<UserCompany> UserCompanies { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
+    }
+
+    public class AspNetUserMetaData
+    {
+        [Display(Name= "Email Address")]
+        [Required(ErrorMessage= "Email Address Is Required")]
+        [EmailAddress(ErrorMessage= "Invalid Email Address")]
+        [StringLength(256)]
+        public string Email { get; set; }
+
+        [Display(Name = "Phone Number")]
+        [Required(ErrorMessage = "Phone Number Is Required")]
+        public string PhoneNumber { get; set; }
+
+        [Display(Name = "City")]
+        [Required(ErrorMessage = "City Is Required")]
+        [StringLength(100)]
+        public string City { get; set; }
+
+        [Display(Name = "State")]
+        [StringLength(100)]
+        public string State { get; set; }
+
+        [Display(Name = "PIN")]
+        [StringLength(20)]
+        public string PIN { get; set; }
+
     }
 }
