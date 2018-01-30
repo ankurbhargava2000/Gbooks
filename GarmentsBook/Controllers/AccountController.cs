@@ -111,7 +111,7 @@ namespace GarmentSoft.Controllers
                             
                             companyList.Add(company);
                         }
-                        
+                        Session["UserId"] = user.Id;
                         Session["companyListAssociatedWithUser"] = companyList;
                         return RedirectToLocal(returnUrl);
                     }
