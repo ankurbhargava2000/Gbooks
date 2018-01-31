@@ -85,6 +85,7 @@ namespace GarmentSoft.Controllers
             {
                 case SignInStatus.Success:
                 {
+                 
                     ApplicationUser user = await UserManager.FindAsync(model.Email, model.Password);
                         var associatedCompanyList = db1.UserCompanies.Where(x => x.UserId == user.Id).Include(x => x.Company).Select(y => new
                         {

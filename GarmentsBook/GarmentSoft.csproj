@@ -230,6 +230,7 @@
     <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="Controllers\TailorChalanController.cs" />
     <Compile Include="Controllers\TailorChalanSendController.cs" />
+    <Compile Include="Controllers\UserProfileController.cs" />
     <Compile Include="Controllers\VendorsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -816,6 +817,7 @@
     <Content Include="Views\Journal\Details.cshtml" />
     <Content Include="Views\Journal\Edit.cshtml" />
     <Content Include="Views\Journal\Index.cshtml" />
+    <Content Include="Views\UserProfile\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

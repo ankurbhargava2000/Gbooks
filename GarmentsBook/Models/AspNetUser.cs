@@ -14,7 +14,7 @@ namespace GarmentSoft.Models
     using System;
     using System.Collections.Generic;
     
-    [MetadataType(typeof(AspNetUserMetaData))]
+    //[MetadataType(typeof(AspNetUserMetaData))]
     public partial class AspNetUser
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -74,30 +74,5 @@ namespace GarmentSoft.Models
         public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
     }
 
-    public class AspNetUserMetaData
-    {
-        [Display(Name= "Email Address")]
-        [Required(ErrorMessage= "Email Address Is Required")]
-        [EmailAddress(ErrorMessage= "Invalid Email Address")]
-        [StringLength(256)]
-        public string Email { get; set; }
-
-        [Display(Name = "Phone Number")]
-        [Required(ErrorMessage = "Phone Number Is Required")]
-        public string PhoneNumber { get; set; }
-
-        [Display(Name = "City")]
-        [Required(ErrorMessage = "City Is Required")]
-        [StringLength(100)]
-        public string City { get; set; }
-
-        [Display(Name = "State")]
-        [StringLength(100)]
-        public string State { get; set; }
-
-        [Display(Name = "PIN")]
-        [StringLength(20)]
-        public string PIN { get; set; }
-
-    }
+    
 }

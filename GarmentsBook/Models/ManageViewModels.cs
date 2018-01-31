@@ -83,4 +83,42 @@ namespace GarmentSoft.Models
         public string SelectedProvider { get; set; }
         public ICollection<System.Web.Mvc.SelectListItem> Providers { get; set; }
     }
+
+    public class UserProfileViewModel
+    {
+        [Display(Name = "Email Address")]
+        [Required(ErrorMessage = "Email Address Is Required")]
+        [EmailAddress(ErrorMessage = "Invalid Email Address")]
+        [StringLength(256)]
+        public string Email { get; set; }
+
+        [Display(Name = "Phone Number")]
+        [Required(ErrorMessage = "Phone Number Is Required")]
+        public string PhoneNumber { get; set; }
+
+        [Display(Name = "City")]
+        [Required(ErrorMessage = "City Is Required")]
+        [StringLength(100)]
+        public string City { get; set; }
+
+        [Display(Name = "State")]
+        [StringLength(100)]
+        public string State { get; set; }
+
+        [Display(Name = "PIN")]
+        [StringLength(20)]
+        public string PIN { get; set; }
+
+        public string Address { get; set; }
+
+        public int Id { get; set; }
+
+    }
+
+    public class ChangeProfileViewModel
+    {
+        public UserProfileViewModel UserProfile { get; set; }
+
+        public ChangePasswordViewModel ChangePassword { get; set; }
+    }
 }
