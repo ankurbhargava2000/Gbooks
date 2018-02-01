@@ -10,9 +10,11 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 
 using GarmentSoft.Models;
+using GarmentSoft.App_Start;
 
 namespace GarmentSoft.Controllers
 {
+    [SessionExpire]
     public class UserProfileController : Controller
     {
         private GarmentBooksEntities db = new GarmentBooksEntities();
@@ -35,7 +37,7 @@ namespace GarmentSoft.Controllers
                 _userManager = value;
             }
         }
-
+        
         public ActionResult Edit()
         {
 
@@ -67,6 +69,7 @@ namespace GarmentSoft.Controllers
             return View(changeProfile);
         }
 
+        
         public UserProfileViewModel UserProfile(AspNetUser aspnetuser)
         {
 
