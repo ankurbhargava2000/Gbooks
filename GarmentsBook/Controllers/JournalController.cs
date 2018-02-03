@@ -8,9 +8,11 @@ using System.Web;
 using System.Web.Mvc;
 using GarmentSoft.Models;
 using Microsoft.AspNet.Identity;
+using GarmentSoft.App_Start;
 
 namespace GarmentSoft.Controllers
 {
+    [SessionExpire]
     public class JournalController : Controller
     {
         private GarmentBooksEntities db = new GarmentBooksEntities();
