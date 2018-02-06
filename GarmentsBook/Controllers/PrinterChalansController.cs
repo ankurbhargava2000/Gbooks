@@ -9,9 +9,11 @@ using System.Web.Mvc;
 using GarmentSoft.Models;
 using PagedList;
 using Microsoft.AspNet.Identity;
+using GarmentSoft.App_Start; 
 
 namespace GarmentSoft.Controllers
 {
+    [SessionExpire]
     [Authorize]
     public class PrinterChalansController : Controller
     {

@@ -8,9 +8,11 @@ using System.Web;
 using System.Web.Mvc;
 using PagedList;
 using Microsoft.AspNet.Identity;
+using GarmentSoft.App_Start;
 
 namespace GarmentSoft.Controllers
 {
+    [SessionExpire]
     [Authorize]
     public class TailorChalanSendController : Controller
     {

@@ -5,9 +5,11 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Web.Mvc;
+using GarmentSoft.App_Start;
 
 namespace GarmentSoft.Controllers
 {
+    [SessionExpire]
     public class DashboardController : Controller
     {
 

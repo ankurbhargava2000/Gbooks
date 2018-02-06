@@ -15,6 +15,7 @@ using GarmentSoft.Models;
 
 namespace GarmentSoft.Controllers
 {
+    
     [Authorize]
     public class AccountController : Controller
     {
@@ -87,6 +88,7 @@ namespace GarmentSoft.Controllers
                 {
                  
                     ApplicationUser user = await UserManager.FindAsync(model.Email, model.Password);
+                    Session["UserId"] = user.Id;
                         var associatedCompanyList = db1.UserCompanies.Where(x => x.UserId == user.Id).Include(x => x.Company).Select(y => new
                         {
                             CompanyId = y.Company.Id,
@@ -112,8 +114,7 @@ namespace GarmentSoft.Controllers
                             
                             companyList.Add(company);
                         }
-                        Session["UserId"] = user.Id;
-                        Session["companyListAssociatedWithUser"] = companyList;
+                       Session["companyListAssociatedWithUser"] = companyList;
                         return RedirectToLocal(returnUrl);
                     }
                 case SignInStatus.LockedOut:
@@ -428,6 +429,7 @@ namespace GarmentSoft.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            Session.Abandon();
             return RedirectToAction("Login", "Account");
         }
 

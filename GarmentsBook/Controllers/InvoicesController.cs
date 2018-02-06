@@ -6,10 +6,12 @@ using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using GarmentSoft.Models;
+using GarmentSoft.App_Start;
 //using Rotativa;
 
 namespace GarmentSoft.Controllers
 {
+    [SessionExpire]
     [Authorize]
     public class InvoicesController : Controller
     {

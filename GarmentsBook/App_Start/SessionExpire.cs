@@ -12,7 +12,7 @@ namespace GarmentSoft.App_Start
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             HttpContext ctx = HttpContext.Current;
-            if (HttpContext.Current.Session["CompanyID"] == null)
+            if (HttpContext.Current.Session["UserId"] == null)
             {
                 filterContext.Result = new RedirectResult("~/Account/LogOff");
                 return;
